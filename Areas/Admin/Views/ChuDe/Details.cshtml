@@ -1,0 +1,50 @@
+﻿@model WebApplication.Models.EF.ChuDe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<div class="card-header py-3">
+    <h2 class="m-0 font-weight-bold text-primary">Sách</h2>
+</div>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Admin">Trang Chủ</a></li>
+        <li class="breadcrumb-item"><a href="~/Admin/ChuDe">Chủ Đề</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Xem Chi Tiết</li>
+    </ol>
+</nav>
+
+<div class="card shadow mb-4">
+    <div class="row-cols-1">
+        <div class="col-4">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tên chủ đề</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayFor(model => model.TenCD)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            <td>
+                <a href="@Url.Content("~/Admin/NhaXuatBan/Edit?id=")@Model.ID" class="btn btn-outline-info"><span class="glyphicon glyphicon-pencil"></span>Sửa</a>
+            </td>
+            @Html.ActionLink("Trở về", "Index")
+        </p>
+    </div>
+</div>
+

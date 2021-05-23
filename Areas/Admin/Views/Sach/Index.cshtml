@@ -1,0 +1,140 @@
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<WebApplication.Models._EF._Sach>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<style>
+    /* thiết lập style cho thẻ a */
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 12px 18px;
+        text-decoration: none;
+    }
+        /* thiết lập style cho class active */
+        .pagination a.active {
+            background-color: dodgerblue;
+            color: white;
+            /*thiết kế hình tròn với css*/
+            border-radius: 50%;
+        }
+        /* thêm màu nền khi người dùng hover vào class không active */
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+            /*thiết kế hình tròn với css*/
+            border-radius: 50%;
+        }
+</style>
+
+<div class="card-header py-3">
+    <h2 class="m-0 font-weight-bold text-primary">Sách</h2>
+</div>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Admin">Trang Chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sách</li>
+    </ol>
+</nav>
+
+<div class="panel-body">
+    <div class="card shadow mb-4">
+        <div class="row-cols-1">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th>
+                                <a href="~/Admin/Sach/Create" class="btn btn-outline-success"><span class="glyphicon glyphicon-search"></span>Thêm mới</a>
+                            </th>
+                        </tr>
+                    </table>
+                    <hr />
+
+                    @using (Html.BeginForm("Index", "Sach", FormMethod.Get))
+                    {
+                        <div class="input-group">
+                            <input type="text" class="from-control bg-light border-0 small col-3" placeholder="Search for..."
+                                   aria-label="Search" value="@ViewBag.searchString" aria-describedby="basic-addon2" name="searchString" />
+                            @Html.DropDownList("searchField", ViewBag.searchField as SelectList, new { @class = "from-control" })
+                            <input type="number" class="from-control bg-light border-0 small col-2" placeholder="Giá trong khoảng từ..."
+                                   aria-label="Search" value="@ViewBag.priceMin" aria-describedby="basic-addon2" name="priceMin" />
+                            <input type="number" class="from-control bg-light border-0 small col-2" placeholder="đến..."
+                                   aria-label="Search" value="@ViewBag.priceMax" aria-describedby="basic-addon2" name="priceMax" />
+
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    Search
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+
+                    <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Tên sách</th>
+                                <th>Giá bán</th>
+                                <th>Số lượng tồn</th>
+                                <th>Ảnh</th>
+                                <th>Chủ đề</th>
+                                <th>Nhà sản xuất</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenSach)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.GiaBan)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SoLuongTon)
+                                    </td>
+                                    <td>
+                                        <img style="width:100px;height:100px" src="~/Upload/sach/@item.AnhBia" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenCD)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenNXB)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Content("~/Admin/Sach/Edit?id=")@item.ID" class="btn btn-outline-warning"><span class="glyphicon glyphicon-pencil"></span>Sửa</a>
+                                        <a href="@Url.Content("~/Admin/Sach/Details?id=")@item.ID" class="btn btn-outline-primary"><span class="glyphicon glyphicon-search"></span>Chi tiết</a>
+                                        <a href="@Url.Content("~/Admin/Sach/Delete?id=")@item.ID" class="btn btn-outline-danger"><span class="glyphicon glyphicon-trash"></span>Xóa</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pagination">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.searchString, @searchField = @ViewBag._searchField, @priceMin = @ViewBag.priceMin, @priceMax = @ViewBag.priceMax }))
+</div>
+
+
+
