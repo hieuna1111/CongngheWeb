@@ -19,7 +19,7 @@ namespace WebApplication.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult LoginAction()
         {
-            return View("~/Views/Home/Index.cshtml");
+            return View();
         }
 
         [HttpPost]
@@ -36,7 +36,7 @@ namespace WebApplication.Areas.Admin.Controllers
             else
             {
                 ViewBag.Login_Unsuccessful = "Thông tin tài khoản mật khẩu không chính xác.";
-                return View("~/Views/Home/Index.cshtml");
+                return View();
             }
         }
     }

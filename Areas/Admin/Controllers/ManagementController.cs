@@ -14,6 +14,7 @@ namespace WebApplication.Areas.Admin.Controllers
             var result = Session["Login_Successfull"];
             if (result == null)
             {
+                Session["TextNull"] = "Đăng nhập trước khi vào trang chủ.";
                 return View("~/Views/Home/Index.cshtml");
             }
             else
