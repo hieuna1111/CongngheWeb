@@ -64,14 +64,17 @@
                     @using (Html.BeginForm("Index", "Sach", FormMethod.Get))
                     {
                         <div class="input-group">
-                            <input type="text" class="from-control bg-light border-0 small col-3" placeholder="Search for..."
+                            <input type="search" class="from-control bg-light border-0 small col-3" placeholder="Search for..."
                                    aria-label="Search" value="@ViewBag.searchString" aria-describedby="basic-addon2" name="searchString" />
+                            <div style="padding:5px"></div>
                             @Html.DropDownList("searchField", ViewBag.searchField as SelectList, new { @class = "from-control" })
+                            <div style="padding:5px"></div>
                             <input type="number" class="from-control bg-light border-0 small col-2" placeholder="Giá trong khoảng từ..."
                                    aria-label="Search" value="@ViewBag.priceMin" aria-describedby="basic-addon2" name="priceMin" />
+                            <div style="padding:5px"></div>
                             <input type="number" class="from-control bg-light border-0 small col-2" placeholder="đến..."
                                    aria-label="Search" value="@ViewBag.priceMax" aria-describedby="basic-addon2" name="priceMax" />
-
+                            <div style="padding:5px"></div>
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
                                     Search
