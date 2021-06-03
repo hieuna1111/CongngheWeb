@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Cart.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <section id="cart_items">
@@ -106,3 +106,89 @@
         </div>
     </div>
 </section> <!--/#cart_items-->
+
+<section id="do_action">
+    <div class="container">
+        @*<div class="heading">
+                <h3>What would you like to do next?</h3>
+                <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+            </div>*@
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Thông tin khách hàng</label>
+                <div class="chose_area">
+                    <ul class="user_option">
+                        <li>
+                            <input type="radio" value="male" name="sex">
+                            <label>Anh</label>
+                        </li>
+                        <li>
+                            <input type="radio" value="female" name="sex">
+                            <label>Chị</label>
+                        </li>
+                    </ul>
+                    <ul class="user_info">
+                        <li class="single_field zip-field">
+                            <label>Họ tên: </label>
+                            <input type="text">
+                        </li>
+                        <li class="single_field zip-field">
+                            <label>Số điện thoại: </label>
+                            <input type="text">
+                        </li>
+                    </ul>
+                    <ul class="user_info">
+                        <li class="single_field">
+                            <label>Thành phố:</label>
+                            <select>
+                                <option>Lựa chọn</option>
+                                <option>Hà Nội</option>
+                                <option>TP Hồ Chí Minh</option>
+                                <option>Nam Định</option>
+                                <option>Thái Bình</option>
+                                <option>Hà Nam</option>
+                                <option>Bắc Ninh</option>
+                                <option>Bắc Giang</option>
+                                <option>Dubai</option>
+                            </select>
+
+                        </li>
+                        <li class="single_field">
+                            <label>Huyện</label>
+                            <select>
+                                <option>Lựa chọn</option>
+                                <option>Dhaka</option>
+                                <option>London</option>
+                                <option>Dillih</option>
+                                <option>Lahore</option>
+                                <option>Alaska</option>
+                                <option>Canada</option>
+                                <option>Dubai</option>
+                            </select>
+
+                        </li>
+                        <li class="single_field zip-field">
+                            <label>Địa chỉ cụ thể:</label>
+                            <input type="text">
+                        </li>
+                    </ul>
+                    <a class="btn btn-default update" href="">Get Quotes</a>
+                    <a class="btn btn-default check_out" href="">Continue</a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label>Hóa đơn</label>
+                <div class="total_area">
+                    <ul>
+                        <li>Cart Sub Total <span>$59</span></li>
+                        <li>Eco Tax <span>$2</span></li>
+                        <li>Shipping Cost <span>Free</span></li>
+                        <li>Total <span>$61</span></li>
+                    </ul>
+                    <a class="btn btn-default update" href="">Update</a>
+                    <a class="btn btn-default check_out" href="">Check Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--/#do_action-->

@@ -1,11 +1,108 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+@*<html lang="en">*@
+
+<style>
+    .dropbtn {
+        background-color: #40403E;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #FE980F
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #FE980F;
+    }
+</style>
+
+<style>
+    .hvr-hover {
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        position: relative;
+        background: #FE980F;
+        -webkit-transition-property: color;
+        transition-property: color;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+        .hvr-hover::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #f1f1f1;
+            border-radius: 100%;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+            -webkit-transition-property: transform;
+            transition-property: transform;
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+        }
+
+        .hvr-hover:hover::after {
+            -webkit-transform: scale(2);
+            transform: scale(2);
+            color: #ffffff;
+        }
+
+    .hvr-hover {
+        overflow: hidden;
+    }
+
+    ul.cart-list > li.total > .btn:hover {
+        color: #ffffff;
+    }
+</style>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Cart | Books-Store</title>
+    <title>Home | Books-Store</title>
     <link href="~/Assets/Admin2/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/Assets/Admin2/css/font-awesome.min.css" rel="stylesheet">
     <link href="~/Assets/Admin2/css/prettyPhoto.css" rel="stylesheet">
@@ -26,12 +123,11 @@
 
 <body>
     <header id="header">
-        <!--header-->
         <div class="header_top">
             <!--header_top-->
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 ">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
                                 <li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
@@ -53,7 +149,6 @@
                 </div>
             </div>
         </div><!--/header_top-->
-
         <div class="header-middle">
             <!--header-middle-->
             <div class="container">
@@ -65,40 +160,6 @@
 
                     </div>
                     <div class="col-sm-8">
-                        <div class="col-sm-9">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class="mainmenu pull-left">
-                                <ul class="nav navbar-nav collapse navbar-collapse">
-                                    <li><a href="index.html" class="active">Trang chủ</a></li>
-                                    <li class="dropdown">
-                                        <a href="#">Danh mục<i class="fa fa-angle-down"></i></a>
-                                        <ul role="menu" class="sub-menu">
-                                            <li><a href="shop.html">Products</a></li>
-                                            <li><a href="product-details.html">Product Details</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="~/Admin/User/LoginAction">Login</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                        <ul role="menu" class="sub-menu">
-                                            <li><a href="blog.html">Blog List</a></li>
-                                            <li><a href="blog-single.html">Blog Single</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact-us.html">Liên hệ</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 @*<li><a href="#"><i class="fa fa-user"></i> Account</a></li>*@
@@ -112,95 +173,122 @@
                 </div>
             </div>
         </div><!--/header-middle-->
-    </header><!--/header-->
 
-    @RenderBody()
-
-    <section id="do_action">
-        <div class="container">
-            @*<div class="heading">
-                <h3>What would you like to do next?</h3>
-                <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
-            </div>*@
-            <div class="row">
-                <div class="col-sm-6">
-                    <label>Thông tin khách hàng</label>
-                    <div class="chose_area">
-                        <ul class="user_option">
-                            <li>
-                                <input type="radio" value="male" name="sex">
-                                <label>Anh</label>
-                            </li>
-                            <li>
-                                <input type="radio" value="female" name="sex">
-                                <label>Chị</label>
-                            </li>
-                        </ul>
-                        <ul class="user_info">
-                            <li class="single_field zip-field">
-                                <label>Họ tên: </label>
-                                <input type="text">
-                            </li>
-                            <li class="single_field zip-field">
-                                <label>Số điện thoại: </label>
-                                <input type="text">
-                            </li>
-                        </ul>
-                        <ul class="user_info">
-                            <li class="single_field">
-                                <label>Thành phố:</label>
-                                <select>
-                                    <option>Lựa chọn</option>
-                                    <option>Hà Nội</option>
-                                    <option>TP Hồ Chí Minh</option>
-                                    <option>Nam Định</option>
-                                    <option>Thái Bình</option>
-                                    <option>Hà Nam</option>
-                                    <option>Bắc Ninh</option>
-                                    <option>Bắc Giang</option>
-                                    <option>Dubai</option>
-                                </select>
-
-                            </li>
-                            <li class="single_field">
-                                <label>Huyện</label>
-                                <select>
-                                    <option>Lựa chọn</option>
-                                    <option>Dhaka</option>
-                                    <option>London</option>
-                                    <option>Dillih</option>
-                                    <option>Lahore</option>
-                                    <option>Alaska</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
-                                </select>
-
-                            </li>
-                            <li class="single_field zip-field">
-                                <label>Địa chỉ cụ thể:</label>
-                                <input type="text">
-                            </li>
-                        </ul>
-                        <a class="btn btn-default update" href="">Get Quotes</a>
-                        <a class="btn btn-default check_out" href="">Continue</a>
+        <div class="header-bottom">
+            <!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="index.html" class="active">Home</a></li>
+                                <li class="dropdown">
+                                    <a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="shop.html">Products</a></li>
+                                        <li><a href="product-details.html">Product Details</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="cart.html">Cart</a></li>
+                                        <li><a href="login.html">Login</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="blog.html">Blog List</a></li>
+                                        <li><a href="blog-single.html">Blog Single</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="404.html">404</a></li>
+                                <li><a href="contact-us.html">Contact</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <label>Hóa đơn</label>
-                    <div class="total_area">
-                        <ul>
-                            <li>Cart Sub Total <span>$59</span></li>
-                            <li>Eco Tax <span>$2</span></li>
-                            <li>Shipping Cost <span>Free</span></li>
-                            <li>Total <span>$61</span></li>
-                        </ul>
-                        <a class="btn btn-default update" href="">Update</a>
-                        <a class="btn btn-default check_out" href="">Check Out</a>
+                    <div class="col-sm-3">
+                        <div class="search_box pull-right">
+                            <input type="text" placeholder="Search" />
+                        </div>
                     </div>
                 </div>
             </div>
+        </div><!--/header-bottom-->
+    </header><!--/header-->
+
+    <section id="slider">
+        <!--slider-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#slider-carousel" data-slide-to="1"></li>
+                            <li data-target="#slider-carousel" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-6">
+                                    <h1><span>Books</span>-Store</h1>
+                                    <h2>Nguồn tri thức bất tận của nhân loại</h2>
+                                    <p>"Chỉ trong sách, con người mới biết đến sự thật, tình yêu và cái đẹp hoàn hảo." - George Bernard Shaw</p>
+                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="~/Assets/Admin2/images/home/_girl1.jpg" class="girl img-responsive" alt="" />
+                                    @*<img src="~/Assets/Admin2/images/home/pricing.png" class="pricing" alt="" />*@
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1><span>Books</span>-Store</h1>
+                                    <h2>Chìa khóa khởi nguồn cảm hứng</h2>
+                                    <p>"Việc đọc rất quan trọng. Nếu bạn biết cách đọc, cả thế giới sẽ mở ra cho bạn." - Barack Obama</p>
+                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="~/Assets/Admin2/images/home/_chill2.jpg" class="girl img-responsive" alt="" />
+                                    @*<img src="~/Assets/Admin2/images/home/pricing.png" class="pricing" alt="" />*@
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1><span>Books</span>-Store</h1>
+                                    <h2>Là lựa chọn hàng đầu của bạn</h2>
+                                    <p>Hành trình của bạn bắt đầu từ một sự lựa chọn. Hãy để chúng tôi giúp bạn. </p>
+                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="~/Assets/Admin2/images/home/boy1.jpg" class="girl img-responsive" alt="" />
+                                    @*<img src="~/Assets/Admin2/images/home/pricing.png" class="pricing" alt="" />*@
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </section><!--/#do_action-->
+    </section><!--/slider-->
+
+    @RenderBody()
 
     <footer id="footer">
         <!--Footer-->
@@ -291,11 +379,11 @@
                         <div class="single-widget">
                             <h2>Service</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="">Online Help</a></li>
-                                <li><a href="">Contact Us</a></li>
-                                <li><a href="">Order Status</a></li>
-                                <li><a href="">Change Location</a></li>
-                                <li><a href="">FAQ’s</a></li>
+                                <li><a href="#">Online Help</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Order Status</a></li>
+                                <li><a href="#">Change Location</a></li>
+                                <li><a href="#">FAQ’s</a></li>
                             </ul>
                         </div>
                     </div>
@@ -303,11 +391,11 @@
                         <div class="single-widget">
                             <h2>Quock Shop</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="">T-Shirt</a></li>
-                                <li><a href="">Mens</a></li>
-                                <li><a href="">Womens</a></li>
-                                <li><a href="">Gift Cards</a></li>
-                                <li><a href="">Shoes</a></li>
+                                <li><a href="#">T-Shirt</a></li>
+                                <li><a href="#">Mens</a></li>
+                                <li><a href="#">Womens</a></li>
+                                <li><a href="#">Gift Cards</a></li>
+                                <li><a href="#">Shoes</a></li>
                             </ul>
                         </div>
                     </div>
@@ -315,11 +403,11 @@
                         <div class="single-widget">
                             <h2>Policies</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="">Terms of Use</a></li>
-                                <li><a href="">Privecy Policy</a></li>
-                                <li><a href="">Refund Policy</a></li>
-                                <li><a href="">Billing System</a></li>
-                                <li><a href="">Ticket System</a></li>
+                                <li><a href="#">Terms of Use</a></li>
+                                <li><a href="#">Privecy Policy</a></li>
+                                <li><a href="#">Refund Policy</a></li>
+                                <li><a href="#">Billing System</a></li>
+                                <li><a href="#">Ticket System</a></li>
                             </ul>
                         </div>
                     </div>
@@ -327,11 +415,11 @@
                         <div class="single-widget">
                             <h2>About Shopper</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="">Company Information</a></li>
-                                <li><a href="">Careers</a></li>
-                                <li><a href="">Store Location</a></li>
-                                <li><a href="">Affillate Program</a></li>
-                                <li><a href="">Copyright</a></li>
+                                <li><a href="#">Company Information</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="#">Store Location</a></li>
+                                <li><a href="#">Affillate Program</a></li>
+                                <li><a href="#">Copyright</a></li>
                             </ul>
                         </div>
                     </div>
@@ -366,6 +454,7 @@
     <script src="~/Assets/Admin2/js/jquery.js"></script>
     <script src="~/Assets/Admin2/js/bootstrap.min.js"></script>
     <script src="~/Assets/Admin2/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Assets/Admin2/js/price-range.js"></script>
     <script src="~/Assets/Admin2/js/jquery.prettyPhoto.js"></script>
     <script src="~/Assets/Admin2/js/main.js"></script>
 </body>

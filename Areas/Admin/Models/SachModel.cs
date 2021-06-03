@@ -25,6 +25,11 @@ namespace WebApplication.Areas.Admin.Models
             return list;
         }
 
+        public List<TacGia> GetList_HoTenTG_IntoDropDownList()
+        {
+            return db.TacGias.ToList();
+        }
+
         public List<ChuDe> GetList_TenCD_IntoDropDownList()
         {
             return db.ChuDes.ToList();
@@ -84,20 +89,24 @@ namespace WebApplication.Areas.Admin.Models
             return model.ToPagedList(page, pageSize);
         }
 
-        //public ChuDe GetChuDeByID(int id)
-        //{
-        //    return db.ChuDes.Find(id);
-        //}
-
-        //public NhaXuatBan GetNhaXuatBanByID(int id)
-        //{
-        //    return db.NhaXuatBans.Find(id);
-        //}
-
         public string GetPathImageByID(int id)
         {
             var res = db.Saches.Where(x => x.ID == id).FirstOrDefault();
             return res.AnhBia;
+        }
+
+        public int GetIDSachByName(string name)
+        {
+            var res = db.Saches.ToList().Find(x => x.TenSach == name);
+            if (res == null) return 0;
+            else return res.ID;
+        }
+
+        public int GetIDTGByName(string name)
+        {
+            var res = db.TacGias.ToList().Find(x => x.HoTenTG == name);
+            if (res == null) return 0;
+            else return res.ID;
         }
 
         public int GetIDByTenCD(string tenCD)
@@ -112,21 +121,32 @@ namespace WebApplication.Areas.Admin.Models
             return res.ID;
         }
 
-        public int Create(string TenSach, int GiaBan, string AnhBia, int SoLuongTon, string TenCD, string TenNXB)
+        public int Create(string TenSach, int GiaBan, string AnhBia, string BiaSau, int SoLuongTon, string HoTenTG,string TenCD, string TenNXB, string MoTa, string Detail)
         {   
             int chudeID = GetIDByTenCD(TenCD);
             int nxbID = GetIDByTenNXB(TenNXB);
+            string MetaTitle = new MetaLink().nameToMeta(TenSach);
             object[] parameters =
             {
                 new SqlParameter("@TenSach", TenSach),
                 new SqlParameter("@GiaBan", GiaBan),
                 new SqlParameter("@AnhBia", AnhBia),
+                new SqlParameter("@BiaSau", BiaSau),
                 new SqlParameter("@SoLuongTon", SoLuongTon),
                 new SqlParameter("@MaCD", chudeID),
-                new SqlParameter("@MaNXB", nxbID)
+                new SqlParameter("@MaNXB", nxbID),
+                new SqlParameter("@MoTa", MoTa),
+                new SqlParameter("@Detail", Detail),
+                new SqlParameter("@MetaTitle", MetaTitle)
             };
-            int result = db.Database.ExecuteSqlCommand("USP_InsertSach @TenSach, @GiaBan,  @AnhBia, @SoLuongTon, @MaCD, @MaNXB", parameters);
-
+            int result = db.Database.ExecuteSqlCommand("USP_InsertSach @TenSach, @GiaBan,  @AnhBia, @BiaSau, @SoLuongTon, @MaCD, @MaNXB, @MoTa, @Detail, @MetaTitle", parameters);
+            if (result > 0)
+            {
+                int MaSach = GetIDSachByName(TenSach);
+                int MaTG = GetIDTGByName(HoTenTG);
+                ThamGiaModel t = new ThamGiaModel();
+                t.InsertThamGia(MaSach, MaTG);
+            }
             return result;
         }
 

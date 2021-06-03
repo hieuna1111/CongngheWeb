@@ -19,13 +19,8 @@ namespace WebApplication.Models.EF
 
         public bool? DaThanhToan { get; set; }
 
-        public bool? TinhTrangGiaoHang { get; set; }
-
         [Column(TypeName = "date")]
         public DateTime? NgayDat { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime? NgayGiao { get; set; }
 
         public int? TongTien { get; set; }
 

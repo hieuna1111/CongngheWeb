@@ -12,12 +12,12 @@ namespace WebApplication.Models.EF
         [Key]
         [Column(Order = 0)]
         [StringLength(50)]
-        public string BookTitle { get; set; }
+        public string ID { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Qty { get; set; }
+        public int Name { get; set; }
 
         [Key]
         [Column(Order = 2)]

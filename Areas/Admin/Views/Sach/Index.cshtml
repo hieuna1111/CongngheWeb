@@ -1,5 +1,4 @@
 ﻿@using PagedList.Mvc;
-
 @model PagedList.IPagedList<WebApplication.Models._EF._Sach>
 
 @{
@@ -90,7 +89,8 @@
                                 <th>Tên sách</th>
                                 <th>Giá bán</th>
                                 <th>Số lượng tồn</th>
-                                <th>Ảnh</th>
+                                <th>Bìa trước</th>
+                                <th>Tác giả</th>
                                 <th>Chủ đề</th>
                                 <th>Nhà sản xuất</th>
                                 <th></th>
@@ -112,6 +112,9 @@
                                     </td>
                                     <td>
                                         <img style="width:100px;height:100px" src="~/Upload/sach/@item.AnhBia" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HoTenTG)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.TenCD)
@@ -138,6 +141,3 @@
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.searchString, @searchField = @ViewBag._searchField, @priceMin = @ViewBag.priceMin, @priceMax = @ViewBag.priceMax }))
 </div>
-
-
-

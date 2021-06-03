@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -25,12 +26,16 @@ namespace WebApplication.Models._EF
         [Range(0, int.MaxValue)]
         public int SoLuongTon { get; set; }
 
-        [DisplayName("Ảnh bìa")]
+        [DisplayName(" Ảnh bìa trước")]
         public string AnhBia { get; set; }
 
-        public int MaCD { get; set; }
+        [DisplayName("Ảnh bìa sau")]
+        public string BiaSau { get; set; }
 
-        public int MaNXB { get; set; }
+        [DisplayName("Tác giả")]
+        [Required(ErrorMessage = "Bạn chưa nhập tên tác giả")]
+
+        public string HoTenTG { get; set; }
 
         [DisplayName("Chủ đề")]
         [Required(ErrorMessage = "Bạn chưa nhập tên sách")]
@@ -39,5 +44,13 @@ namespace WebApplication.Models._EF
         [DisplayName("Nhà xuất bản")]
         [Required(ErrorMessage = "Bạn chưa nhập tên sách")]
         public string TenNXB { get; set; }
+
+        [StringLength(500)]
+        [DisplayName("Mô tả")]
+        public string MoTa { get; set; }
+
+        [Column(TypeName = "ntext")]
+        [DisplayName("Xem chi tiết")]
+        public string Detail { get; set; }
     }
 }

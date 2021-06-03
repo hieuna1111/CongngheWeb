@@ -6,37 +6,36 @@ namespace WebApplication.Models.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("TacGia")]
-    public partial class TacGia
+    [Table("Order")]
+    public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TacGia()
+        public Order()
         {
-            ThamGias = new HashSet<ThamGia>();
+            OrderDetails = new HashSet<OrderDetail>();
         }
 
         public int ID { get; set; }
 
-        [StringLength(50)]
-        public string HoTenTG { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
-        [StringLength(50)]
-        public string DiaChi { get; set; }
+        public int? CustomerID { get; set; }
 
-        [StringLength(50)]
-        public string TieuSu { get; set; }
+        [StringLength(100)]
+        public string ShipName { get; set; }
 
-        [StringLength(50)]
-        public string DienThoai { get; set; }
+        [StringLength(100)]
+        public string ShipMobile { get; set; }
 
-        [StringLength(250)]
-        public string MetaTitle { get; set; }
+        [StringLength(100)]
+        public string ShipAddress { get; set; }
 
-        public int? DisplayOrder { get; set; }
+        [StringLength(100)]
+        public string ShipEmail { get; set; }
 
         public bool? Status { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ThamGia> ThamGias { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

@@ -69,6 +69,7 @@ namespace WebApplication.Areas.Admin.Controllers
         public void SetViewBag(int? selectedID = null)
         {
             var model = new SachModel();
+            ViewBag.HoTenTG = new SelectList(model.GetList_HoTenTG_IntoDropDownList(), "HoTenTG", "HoTenTG", selectedID);
             ViewBag.TenCD = new SelectList(model.GetList_TenCD_IntoDropDownList(), "TenCD", "TenCD", selectedID);
             ViewBag.TenNXB = new SelectList(model.GetList_TenNXB_IntoDropDownList(), "TenNXB", "TenNXB", selectedID); 
         }
@@ -85,7 +86,7 @@ namespace WebApplication.Areas.Admin.Controllers
         }
          
         [HttpPost]
-        public ActionResult Create(_Sach collection, HttpPostedFileBase uploadhinh)
+        public ActionResult Create(_Sach collection, HttpPostedFileBase uploadhinh, HttpPostedFileBase uploadhinh2)
         {
             var model = new SachModel();
             try
@@ -104,8 +105,20 @@ namespace WebApplication.Areas.Admin.Controllers
                         uploadhinh.SaveAs(_path);
                         collection.AnhBia = _FileName;
                         db.SaveChanges();
-                    }   
-                    int result = model.Create(collection.TenSach, collection.GiaBan, collection.AnhBia, collection.SoLuongTon, collection.TenCD, collection.TenNXB);
+                    }
+                    if (uploadhinh2 != null && uploadhinh2.ContentLength > 0)
+                    {
+                        int id = int.Parse(db.Saches.ToList().Last().ID.ToString());
+                        id += 1;
+                        string _FileName = "";
+                        int index = uploadhinh2.FileName.IndexOf('.');
+                        _FileName = "sach" + (id+1).ToString() + "." + uploadhinh2.FileName.Substring(index + 1);
+                        string _path = Path.Combine(Server.MapPath("~/Upload/sach"), _FileName);
+                        uploadhinh2.SaveAs(_path);
+                        collection.BiaSau = _FileName;
+                        db.SaveChanges();
+                    }
+                    int result = model.Create(collection.TenSach, collection.GiaBan, collection.AnhBia, collection.BiaSau, collection.SoLuongTon, collection.HoTenTG,collection.TenCD, collection.TenNXB, collection.MoTa, collection.Detail);
 
                     if (result > 0)
                         return RedirectToAction("Index");

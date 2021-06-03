@@ -143,27 +143,40 @@
     <Compile Include="Areas\Admin\Models\ChuDeModel.cs" />
     <Compile Include="Areas\Admin\Models\NhaXuatBanModel.cs" />
     <Compile Include="Areas\Admin\Models\SachModel.cs" />
+    <Compile Include="Areas\Admin\Models\ThamGiaModel.cs" />
     <Compile Include="Areas\Admin\Models\_User.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductDetailController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EF\About.cs" />
     <Compile Include="Models\EF\ChiTietDonHang.cs" />
     <Compile Include="Models\EF\ChiTietPhieuNhap.cs" />
     <Compile Include="Models\EF\ChuDe.cs" />
+    <Compile Include="Models\EF\Contact.cs" />
     <Compile Include="Models\EF\dbContext.cs" />
     <Compile Include="Models\EF\DonHang.cs" />
+    <Compile Include="Models\EF\FeedBack.cs" />
+    <Compile Include="Models\EF\Footer.cs" />
     <Compile Include="Models\EF\GioHang.cs" />
     <Compile Include="Models\EF\KhachHang.cs" />
+    <Compile Include="Models\EF\Menu.cs" />
+    <Compile Include="Models\EF\MenuType.cs" />
     <Compile Include="Models\EF\NhaXuatBan.cs" />
+    <Compile Include="Models\EF\Order.cs" />
+    <Compile Include="Models\EF\OrderDetail.cs" />
     <Compile Include="Models\EF\PhieuNhap.cs" />
     <Compile Include="Models\EF\Sach.cs" />
+    <Compile Include="Models\EF\Slide.cs" />
     <Compile Include="Models\EF\sysdiagram.cs" />
     <Compile Include="Models\EF\TacGia.cs" />
     <Compile Include="Models\EF\ThamGia.cs" />
+    <Compile Include="Models\EF\TinTuc.cs" />
     <Compile Include="Models\EF\User.cs" />
+    <Compile Include="Models\_EF\MetaLink.cs" />
     <Compile Include="Models\_EF\SearchField.cs" />
     <Compile Include="Models\_EF\_Sach.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -3809,8 +3822,6 @@
     <Content Include="Areas\Admin\Views\Management\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\LoginAction.cshtml" />
     <Content Include="libman.json" />
-    <Content Include="Areas\Admin\Views\Sach\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Sach\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Sach\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ChuDe\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ChuDe\Create.cshtml" />
@@ -4149,6 +4160,8 @@
     <Content Include="Assets\Admin\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Assets\Admin\vendor\jquery\jquery.min.map" />
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Areas\Admin\Views\Sach\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Sach\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -4169,10 +4182,11 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_Product.cshtml" />
     <Content Include="Views\Product\VanHoc.cshtml" />
-    <Content Include="Views\Shared\_Cart.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Shared\_MainLayout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\ProductDetail\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
