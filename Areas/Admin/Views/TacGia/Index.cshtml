@@ -1,6 +1,6 @@
 ﻿@using PagedList.Mvc;
 
-@model PagedList.IPagedList<WebApplication.Models.EF.NhaXuatBan>
+@model PagedList.IPagedList<WebApplication.Models.EF.TacGia>
 
 @{
     ViewBag.Title = "Index";
@@ -37,13 +37,13 @@
 </style>
 
 <div class="card-header py-3 text-center">
-    <h2 class="m-0 font-weight-bold text-primary">Nhà Xuất Bản</h2>
+    <h2 class="m-0 font-weight-bold text-primary">Tác Giả</h2>
 </div>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="~/Admin">Trang Chủ</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Nhà Xuất Bản</li>
+        <li class="breadcrumb-item active" aria-current="page">Tác Giả</li>
     </ol>
 </nav>
 
@@ -56,12 +56,12 @@
                     <table>
                         <tr>
                             <th>
-                                <a href="~/Admin/NhaXuatBan/Create" class="btn btn-outline-success"><span class="glyphicon glyphicon-search"></span>Thêm mới</a>
+                                <a href="~/Admin/TacGia/Create" class="btn btn-outline-success"><span class="glyphicon glyphicon-search"></span>Thêm mới</a>
                             </th>
                         </tr>
                     </table>
                     <hr />
-                    @using (Html.BeginForm("Index", "NhaXuatBan", FormMethod.Get))
+                    @using (Html.BeginForm("Index", "TacGia", FormMethod.Get))
                     {
                         <div class="input-group">
                             <input type="text" class="from-control bg-light border-0 small col-3" placeholder="Search for..."
@@ -79,9 +79,10 @@
                     <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Tên nhà xuất bản</th>
+                                <th>Tên tác giả</th>
                                 <th>Địa chỉ</th>
                                 <th>Số điện thoại</th>
+                                <th>Tiểu sử</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -89,7 +90,7 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.TenNXB)
+                                    @Html.DisplayFor(modelItem => item.HoTenTG)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DiaChi)
@@ -98,9 +99,12 @@
                                     @Html.DisplayFor(modelItem => item.DienThoai)
                                 </td>
                                 <td>
-                                    <a href="@Url.Content("~/Admin/NhaXuatBan/Edit?id=")@item.ID" class="btn btn-outline-warning"><span class="glyphicon glyphicon-pencil"></span>Sửa</a>
-                                    <a href="@Url.Content("~/Admin/NhaXuatBan/Details?id=")@item.ID" class="btn btn-outline-primary"><span class="glyphicon glyphicon-search"></span>Chi tiết</a>
-                                    <a href="@Url.Content("~/Admin/NhaXuatBan/Delete?id=")@item.ID" class="btn btn-outline-danger"><span class="glyphicon glyphicon-trash"></span>Xóa</a>
+                                    @Html.DisplayFor(modelItem => item.TieuSu)
+                                </td>
+                                <td>
+                                    <a href="@Url.Content("~/Admin/TacGia/Edit?id=")@item.ID" class="btn btn-outline-warning"><span class="glyphicon glyphicon-pencil"></span>Sửa</a>
+                                    <a href="@Url.Content("~/Admin/TacGia/Details?id=")@item.ID" class="btn btn-outline-primary"><span class="glyphicon glyphicon-search"></span>Chi tiết</a>
+                                    <a href="@Url.Content("~/Admin/TacGia/Delete?id=")@item.ID" class="btn btn-outline-danger"><span class="glyphicon glyphicon-trash"></span>Xóa</a>
                                 </td>
                             </tr>
                         }

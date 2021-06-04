@@ -11,7 +11,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
-<div class="card-header py-3">
+<div class="card-header py-3 text-center">
     <h2 class="m-0 font-weight-bold text-primary">Sách</h2>
 </div>
 
@@ -41,7 +41,7 @@
         </div>
         <p>
             <td>
-                <a href="@Url.Content("~/Admin/NhaXuatBan/Edit?id=")@Model.ID" class="btn btn-outline-info"><span class="glyphicon glyphicon-pencil"></span>Sửa</a>
+                <a href="@Url.Content("~/Admin/ChuDe/Edit?id=")@Model.ID" class="btn btn-outline-info"><span class="glyphicon glyphicon-pencil"></span>Sửa</a>
             </td>
             @Html.ActionLink("Trở về", "Index")
         </p>

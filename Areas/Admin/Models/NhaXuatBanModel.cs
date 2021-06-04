@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using WebApplication.Models._EF;
 using WebApplication.Models.EF;
 
 namespace WebApplication.Areas.Admin.Models
@@ -23,39 +24,41 @@ namespace WebApplication.Areas.Admin.Models
 
         public IEnumerable<NhaXuatBan> listAllPaging(int page, int pageSize, string searchString)
         {
-            IQueryable<NhaXuatBan> model = db.NhaXuatBans;
+            var res = db.NhaXuatBans.ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                model = model.Where(s => s.TenNXB.Contains(searchString));
+                res = res.Where(x => x.TenNXB.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
             }
-
-            return model.OrderByDescending(s => s.ID).ToPagedList(page, pageSize);
+            return res.OrderByDescending(s => s.ID).ToPagedList(page, pageSize);
         }
 
         public int Create(string TenNXB, string DiaChi, string sdt)
         {
+            string MetaTitle = new MetaLink().nameToMeta(TenNXB);
             object[] parameters =
             {
                 new SqlParameter("@TenNXB", TenNXB),
                 new SqlParameter("@DiaChi", DiaChi),
-                new SqlParameter("@SDT", sdt)
+                new SqlParameter("@SDT", sdt),
+                new SqlParameter("@MetaTitle", MetaTitle)
             };
-            int result = db.Database.ExecuteSqlCommand("USP_InsertNhaXuatBan @TenNXB, @DiaChi, @SDT", parameters);
-
+            int result = db.Database.ExecuteSqlCommand("USP_InsertNhaXuatBan @TenNXB, @DiaChi, @SDT, @MetaTitle", parameters);
             return result;
         }
 
         public int Edit(int ID, string TenNXB, string DiaChi, string sdt)
         {
+            string MetaTitle = new MetaLink().nameToMeta(TenNXB);
             object[] parameters =
             {
                 new SqlParameter("@ID", ID),
                 new SqlParameter("@TenNXB", TenNXB),
                 new SqlParameter("@DiaChi", DiaChi),
-                new SqlParameter("@SDT", sdt)
+                new SqlParameter("@SDT", sdt),
+                new SqlParameter("@MetaTitle", MetaTitle)
             };
-            int result = db.Database.ExecuteSqlCommand("USP_UpdateNhaXuatBan @ID , @TenNXB, @DiaChi, @SDT", parameters);
+            int result = db.Database.ExecuteSqlCommand("USP_UpdateNhaXuatBan @ID , @TenNXB, @DiaChi, @SDT, @MetaTitle", parameters);
             return result;
         }
 

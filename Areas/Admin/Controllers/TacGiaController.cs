@@ -8,7 +8,7 @@ using WebApplication.Models.EF;
 
 namespace WebApplication.Areas.Admin.Controllers
 {
-    public class ChuDeController : Controller
+    public class TacGiaController : Controller
     {
         public ActionResult Index(string searchString = "", int page = 1, int pageSize = 6)
         {
@@ -16,8 +16,8 @@ namespace WebApplication.Areas.Admin.Controllers
             {
                 return View("~/Views/Home/Index.cshtml");
             }
-            var chude = new ChuDeModel();
-            var model = chude.listAllPaging(page, pageSize, searchString);
+            var tg = new TacGiaModel();
+            var model = tg.listAllPaging(page, pageSize, searchString);
             ViewBag.searchString = searchString;
             return View(model);
         }
@@ -28,7 +28,7 @@ namespace WebApplication.Areas.Admin.Controllers
             {
                 return View("~/Views/Home/Index.cshtml");
             }
-            var model = new ChuDeModel();
+            var model = new TacGiaModel();
             var list = model.listAll();
             var res = list.Where(x => x.ID == id).FirstOrDefault();
             return View(res);
@@ -45,21 +45,21 @@ namespace WebApplication.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(ChuDe cd)
+        public ActionResult Create(TacGia tg)
         {
-            var model = new ChuDeModel();
+            var model = new TacGiaModel();
             try
             {
-                var result = model.Create(cd.TenCD);
+                var result = model.Create(tg.HoTenTG, tg.DiaChi, tg.DienThoai, tg.TieuSu);
                 if (result > 0)
                 {
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Thêm mới chủ đề không thành công.");
+                    ModelState.AddModelError("", "Thêm mới tác giả không thành công.");
                 }
-                return View(cd);
+                return View(tg);
             }
             catch
             {
@@ -74,28 +74,28 @@ namespace WebApplication.Areas.Admin.Controllers
             {
                 return View("~/Views/Home/Index.cshtml");
             }
-            var model = new ChuDeModel();
+            var model = new TacGiaModel();
             var list = model.listAll();
             var res = list.Where(x => x.ID == id).FirstOrDefault();
             return View(res);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, ChuDe cd)
+        public ActionResult Edit(int id, TacGia tg)
         {
-            var model = new ChuDeModel();
+            var model = new TacGiaModel();
             try
             {
-                var result = model.Edit(id, cd.TenCD);
+                var result = model.Edit(id, tg.HoTenTG, tg.DiaChi, tg.DienThoai, tg.TieuSu);
                 if (result > 0)
                 {
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Cập nhật chủ đề không thành công.");
+                    ModelState.AddModelError("", "Cập nhật tác giả không thành công.");
                 }
-                return View(cd);
+                return View(tg);
             }
             catch
             {
@@ -103,24 +103,25 @@ namespace WebApplication.Areas.Admin.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             if (Session["Login_Successfull"] == null)
             {
                 return View("~/Views/Home/Index.cshtml");
             }
-            var model = new ChuDeModel();
+            var model = new TacGiaModel();
             var list = model.listAll();
             var res = list.Where(x => x.ID == id).FirstOrDefault();
             return View(res);
         }
 
         [HttpPost]
-        public ActionResult Delete(int id, ChuDe cd)
+        public ActionResult Delete(int id, TacGia tg)
         {
             try
             {
-                var model = new ChuDeModel();
+                var model = new TacGiaModel();
                 var result = model.Delete(id);
                 if (result > 0)
                 {
@@ -128,9 +129,9 @@ namespace WebApplication.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Xóa chủ đề không thành công.");
+                    ModelState.AddModelError("", "Xóa nhà tác giả không thành công.");
                 }
-                return View(cd);
+                return View(tg);
             }
             catch
             {

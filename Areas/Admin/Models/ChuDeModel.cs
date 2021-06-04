@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication.Models._EF;
 using WebApplication.Models.EF;
 
 namespace WebApplication.Areas.Admin.Models
@@ -24,35 +25,39 @@ namespace WebApplication.Areas.Admin.Models
 
         public IEnumerable<ChuDe>listAllPaging(int page, int pageSize, string searchString)
         {
-            IQueryable<ChuDe> model = db.ChuDes;
+            var res = db.ChuDes.ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                model = model.Where(s => s.TenCD.Contains(searchString)); 
+                res = res.Where(x => x.TenCD.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
             }
 
-            return model.OrderByDescending(s => s.ID).ToPagedList(page, pageSize);
+            return res.OrderByDescending(s => s.ID).ToPagedList(page, pageSize);
         }
 
         public int Create(string TenCD)
         {
+            string MetaTitle = new MetaLink().nameToMeta(TenCD);
             object[] parameters = 
             {
-                new SqlParameter("@ChuDe", TenCD)
+                new SqlParameter("@ChuDe", TenCD),
+                new SqlParameter("@MetaTitle", MetaTitle)
             };
-            int result = db.Database.ExecuteSqlCommand("USP_InsertChuDe @ChuDe", parameters);
+            int result = db.Database.ExecuteSqlCommand("USP_InsertChuDe @ChuDe, @MetaTitle", parameters);
 
             return result;
         }
 
         public int Edit(int ID, string TenCD)
         {
+            string MetaTitle = new MetaLink().nameToMeta(TenCD);
             object[] parameters =
             {
                 new SqlParameter("@ID", ID),
-                new SqlParameter("@newChuDe", TenCD)
+                new SqlParameter("@newChuDe", TenCD),
+                new SqlParameter("@MetaTitle", MetaTitle)
             };
-            int result = db.Database.ExecuteSqlCommand("USP_UpdateChuDe @ID ,@newChuDe", parameters);
+            int result = db.Database.ExecuteSqlCommand("USP_UpdateChuDe @ID ,@newChuDe, @MetaTitle", parameters);
             return result;
         }
 

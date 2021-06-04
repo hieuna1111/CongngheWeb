@@ -1,7 +1,8 @@
-namespace WebApplication.Models.EF
+﻿namespace WebApplication.Models.EF
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -18,12 +19,18 @@ namespace WebApplication.Models.EF
         public int ID { get; set; }
 
         [StringLength(50)]
+        [DisplayName("Tên nhà xuất bản")]
+        [Required(ErrorMessage = "Bạn chưa nhập tên nhà xuất bản")]
         public string TenNXB { get; set; }
 
         [StringLength(50)]
+        [DisplayName("Địa chỉ")]
+        [Required(ErrorMessage = "Bạn chưa nhập địa chỉ")]
         public string DiaChi { get; set; }
 
         [StringLength(50)]
+        [DisplayName("Số điện thoại")]
+        [Required(ErrorMessage = "Bạn chưa nhập số điện thoại")]
         public string DienThoai { get; set; }
 
         [StringLength(250)]

@@ -1,4 +1,4 @@
-﻿@model WebApplication.Models.EF.NhaXuatBan
+﻿@model WebApplication.Models.EF.TacGia
 
 @{
     ViewBag.Title = "Details";
@@ -12,13 +12,13 @@
 </head>
 
 <div class="card-header py-3 text-center">
-    <h2 class="m-0 font-weight-bold text-primary">Nhà Xuất Bản</h2>
+    <h2 class="m-0 font-weight-bold text-primary">Tác Giả</h2>
 </div>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="~/Admin">Trang Chủ</a></li>
-        <li class="breadcrumb-item"><a href="~/Admin/NhaXuatBan">Nhà Xuất Bản</a></li>
+        <li class="breadcrumb-item"><a href="~/Admin/TacGia">Tác Giả</a></li>
         <li class="breadcrumb-item active" aria-current="page">Xem Chi Tiết</li>
     </ol>
 </nav>
@@ -29,23 +29,25 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Tên nhà xuất bản</th>
+                        <th>Tên tác giả</th>
                         <th>Địa chỉ</th>
                         <th>Số điện thoại</th>
+                        <th>Tiểu sử</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>@Html.DisplayFor(model => model.TenNXB)</td>
+                        <td>@Html.DisplayFor(model => model.HoTenTG)</td>
                         <td>@Html.DisplayFor(model => model.DiaChi)</td>
                         <td>@Html.DisplayFor(model => model.DienThoai)</td>
+                        <td>@Html.DisplayFor(model => model.TieuSu)</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <p>
             <td>
-                <a href="@Url.Content("~/Admin/NhaXuatBan/Edit?id=")@Model.ID" class="btn btn-outline-info"><span class="glyphicon glyphicon-pencil"></span>Sửa</a>
+                <a href="@Url.Content("~/Admin/TacGia/Edit?id=")@Model.ID" class="btn btn-outline-info"><span class="glyphicon glyphicon-pencil"></span>Sửa</a>
             </td>
             @Html.ActionLink("Trở về", "Index")
         </p>

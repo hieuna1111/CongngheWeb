@@ -1,4 +1,4 @@
-﻿@model WebApplication.Models.EF.ChuDe
+﻿@model WebApplication.Models.EF.TacGia
 
 @{
     ViewBag.Title = "Delete";
@@ -12,13 +12,13 @@
 </head>
 
 <div class="card-header py-3 text-center">
-    <h2 class="m-0 font-weight-bold text-primary">Chủ Đề</h2>
+    <h2 class="m-0 font-weight-bold text-primary">Tác Giả</h2>
 </div>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="~/Admin">Trang Chủ</a></li>
-        <li class="breadcrumb-item"><a href="~/Admin/ChuDe">Chủ Đề</a></li>
+        <li class="breadcrumb-item"><a href="~/Admin/TacGia">Tác Giả</a></li>
         <li class="breadcrumb-item active" aria-current="page">Xóa</li>
     </ol>
 </nav>
@@ -26,16 +26,22 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <div class="row-cols-1">
-            <div class="col-4">
+            <div class="col-10">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Tên chủ đề</th>
+                            <th>Tên tác giả</th>
+                            <th>Địa chỉ</th>
+                            <th>Điện thoại</th>
+                            <th>Tiểu sử</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>@Html.DisplayFor(model => model.TenCD)</td>
+                            <td>@Html.DisplayFor(model => model.HoTenTG)</td>
+                            <td>@Html.DisplayFor(model => model.DiaChi)</td>
+                            <td>@Html.DisplayFor(model => model.DienThoai)</td>
+                            <td>@Html.DisplayFor(model => model.TieuSu)</td>
                         </tr>
                     </tbody>
                 </table>

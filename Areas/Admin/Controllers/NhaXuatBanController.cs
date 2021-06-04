@@ -12,6 +12,10 @@ namespace WebApplication.Areas.Admin.Controllers
     {
         public ActionResult Index(string searchString = "", int page = 1, int pageSize = 6)
         {
+            if (Session["Login_Successfull"] == null)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             var nxb = new NhaXuatBanModel();
             var model = nxb.listAllPaging(page, pageSize, searchString);
             ViewBag.searchString = searchString;
@@ -20,6 +24,10 @@ namespace WebApplication.Areas.Admin.Controllers
 
         public ActionResult Details(int id)
         {
+            if (Session["Login_Successfull"] == null)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             var model = new NhaXuatBanModel();
             var list = model.listAll();
             var res = list.Where(x => x.ID == id).FirstOrDefault();
@@ -29,7 +37,10 @@ namespace WebApplication.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-
+            if (Session["Login_Successfull"] == null)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             return View();
         }
 
@@ -59,6 +70,10 @@ namespace WebApplication.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            if (Session["Login_Successfull"] == null)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             var model = new NhaXuatBanModel();
             var list = model.listAll();
             var res = list.Where(x => x.ID == id).FirstOrDefault();
@@ -91,6 +106,10 @@ namespace WebApplication.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
+            if (Session["Login_Successfull"] == null)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             var model = new NhaXuatBanModel();
             var list = model.listAll();
             var res = list.Where(x => x.ID == id).FirstOrDefault();

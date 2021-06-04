@@ -139,10 +139,12 @@
     <Compile Include="Areas\Admin\Controllers\ManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhaXuatBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\SachController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TacGiaController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\ChuDeModel.cs" />
     <Compile Include="Areas\Admin\Models\NhaXuatBanModel.cs" />
     <Compile Include="Areas\Admin\Models\SachModel.cs" />
+    <Compile Include="Areas\Admin\Models\TacGiaModel.cs" />
     <Compile Include="Areas\Admin\Models\ThamGiaModel.cs" />
     <Compile Include="Areas\Admin\Models\_User.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -3822,9 +3824,6 @@
     <Content Include="Areas\Admin\Views\Management\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\LoginAction.cshtml" />
     <Content Include="libman.json" />
-    <Content Include="Areas\Admin\Views\ChuDe\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ChuDe\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ChuDe\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ChuDe\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ChuDe\Details.cshtml" />
     <Content Include="Areas\Admin\Views\NhaXuatBan\Index.cshtml" />
@@ -4162,6 +4161,14 @@
     <Content Include="Areas\Admin\Views\Sach\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Sach\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Sach\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ChuDe\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TacGia\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TacGia\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TacGia\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TacGia\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TacGia\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

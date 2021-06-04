@@ -23,6 +23,7 @@ namespace WebApplication.Areas.Admin.Controllers
             List<SearchField> list = new List<SearchField>()
             {
                 new SearchField() {Name = "TenSach", Value = "Tên sách"},
+                new SearchField() {Name = "HoTenTG", Value = "Tên tác giả"},
                 new SearchField() {Name = "TenCD", Value = "Tên chủ đề"},
                 new SearchField() {Name = "TenNXB", Value = "Tên nhà xuất bản"},
                 new SearchField() {Name = "GiaTang", Value = "Giá tăng dần"},

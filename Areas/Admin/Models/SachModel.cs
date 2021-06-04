@@ -48,42 +48,48 @@ namespace WebApplication.Areas.Admin.Models
             if (!String.IsNullOrEmpty(searchString) && searchField == "TenSach" || string.IsNullOrEmpty(searchString) && searchField == "TenSach")
             {
                 model = model.Where(s => s.TenSach.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
-                if (priceMin >= 0 && priceMin < priceMax)
-                {
-                    model = model.Where(s => s.GiaBan >= priceMin && priceMax >= s.GiaBan).OrderBy(s => s.GiaBan).ToList();
-                }
+            }
+            else if (!String.IsNullOrEmpty(searchString) && searchField == "HoTenTG" || string.IsNullOrEmpty(searchString) && searchField == "HoTenTG")
+            {
+                model = model.Where(s => s.HoTenTG.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
             }
             else if (!String.IsNullOrEmpty(searchString) && searchField == "TenCD" || string.IsNullOrEmpty(searchString) && searchField == "TenCD")
             {
                 model = model.Where(s => s.TenCD.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
-                if (priceMin >= 0 && priceMin < priceMax)
-                {
-                    model = model.Where(s => s.GiaBan >= priceMin && priceMax >= s.GiaBan).OrderBy(s => s.GiaBan).ToList();
-                }
             }
             else if (!String.IsNullOrEmpty(searchString) && searchField == "TenNXB" || string.IsNullOrEmpty(searchString) && searchField == "TenNXB")
             {
                 model = model.Where(s => s.TenNXB.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
-                if (priceMin >= 0 && priceMin < priceMax)
-                {
-                    model = model.Where(s => s.GiaBan >= priceMin && priceMax >= s.GiaBan).OrderBy(s => s.GiaBan).ToList();
-                }
             }
             else if (!String.IsNullOrEmpty(searchString) && searchField == "GiaTang" || string.IsNullOrEmpty(searchString) && searchField == "GiaTang")
             {
                 model = model.Where(s => s.TenSach.ToLower().Trim().Contains(searchString.ToLower().Trim())).OrderBy(s => s.GiaBan).ToList();
-                if (priceMin >= 0 && priceMin < priceMax)
-                {
-                    model = model.Where(s => s.GiaBan >= priceMin && priceMax >= s.GiaBan).OrderBy(s => s.GiaBan).ToList();
-                }
             }
             else if (!String.IsNullOrEmpty(searchString) && searchField == "GiaGiam" || string.IsNullOrEmpty(searchString) && searchField == "GiaGiam")
             {
                 model = model.Where(s => s.TenSach.ToLower().Trim().Contains(searchString.ToLower().Trim())).OrderByDescending(s => s.GiaBan).ToList();
-                if (priceMin >= 0 && priceMin < priceMax)
-                {
-                    model = model.Where(s => s.GiaBan >= priceMin && priceMax >= s.GiaBan).OrderBy(s => s.GiaBan).ToList();
-                }
+            }
+
+            if (priceMin > 0 && priceMax >= priceMin)
+            {
+                model = model.Where(x => x.GiaBan >= priceMin && x.GiaBan <= priceMax).OrderBy(x => x.GiaBan).ToList();
+            }
+            else if (priceMin >= 0 && priceMax == 0)
+            {
+                model = model.Where(x => x.GiaBan >= priceMin).OrderBy(x => x.GiaBan).ToList();
+            }
+            else if (priceMax >= 0 && priceMin == 0)
+            {
+                model = model.Where(x => x.GiaBan <= priceMax).OrderBy(x => x.GiaBan).ToList();
+            }
+
+            if (searchField == "GiaGiam")
+            {
+                model = model.OrderByDescending(x => x.GiaBan).ToList();
+            }
+            else if (searchField == "GiaTang")
+            {
+                model = model.OrderBy(x => x.GiaBan).ToList();
             }
 
             return model.ToPagedList(page, pageSize);
