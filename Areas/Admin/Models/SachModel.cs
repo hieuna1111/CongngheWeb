@@ -95,6 +95,12 @@ namespace WebApplication.Areas.Admin.Models
             return res.AnhBia;
         }
 
+        public string GetPathImageBiaSauByID(int id)
+        {
+            var res = db.Saches.Where(x => x.ID == id).FirstOrDefault();
+            return res.BiaSau;
+        }
+
         public int GetIDSachByName(string name)
         {
             var res = db.Saches.ToList().Find(x => x.TenSach == name);
@@ -119,6 +125,12 @@ namespace WebApplication.Areas.Admin.Models
         {
             var res = db.NhaXuatBans.Where(x => x.TenNXB == tenNXB).FirstOrDefault();
             return res.ID;
+        }
+
+        public int GetIDTacGiaByIDSach(int idSach)
+        {
+            var res = db.ThamGias.Where(x => x.MaSach == idSach).FirstOrDefault();
+            return res.MaTG;
         }
 
         public int Create(string TenSach, int GiaBan, string AnhBia, string BiaSau, int SoLuongTon, string HoTenTG,string TenCD, string TenNXB, string MoTa, string Detail)
@@ -150,21 +162,47 @@ namespace WebApplication.Areas.Admin.Models
             return result;
         }
 
-        public int Edit(int ID, string TenSach, int GiaBan, string AnhBia, int SoLuongTon, string TenCD, string TenNXB)
+        public int Edit(int ID, string TenSach, int GiaBan, string AnhBia, string BiaSau, int SoLuongTon, string HoTenTG, string TenCD, string TenNXB, string MoTa, string Detail)
         {
             int chudeID = GetIDByTenCD(TenCD);
             int nxbID = GetIDByTenNXB(TenNXB);
+            string MetaTitle = new MetaLink().nameToMeta(TenSach);
+            var s = db.Saches.Where(x => x.ID == ID).FirstOrDefault();
+            s.NgayCapNhat = DateTime.Now;
+            var _date = s.NgayCapNhat;
+            var MaTGCu = GetIDTacGiaByIDSach(ID);
+
             object[] parameters =
             {
                 new SqlParameter("@ID", ID),
                 new SqlParameter("@TenSach", TenSach),
                 new SqlParameter("@GiaBan", GiaBan),
                 new SqlParameter("@AnhBia", AnhBia),
+                new SqlParameter("@BiaSau", BiaSau),
                 new SqlParameter("@SoLuongTon", SoLuongTon),
                 new SqlParameter("@MaCD", chudeID),
-                new SqlParameter("@MaNXB", nxbID)
+                new SqlParameter("@MaNXB", nxbID),
+                new SqlParameter("@MoTa", MoTa),
+                new SqlParameter("@Detail", Detail),
+                new SqlParameter("@MetaTitle", MetaTitle),
+                new SqlParameter("@NgayCapNhat", _date)
             };
-            int result = db.Database.ExecuteSqlCommand("USP_UpdateSach @ID, @TenSach, @GiaBan, @AnhBia, @SoLuongTon, @MaCD, @MaNXB", parameters);
+            int result = db.Database.ExecuteSqlCommand("USP_UpdateSach @ID, @TenSach, @GiaBan,  @AnhBia, @BiaSau, @SoLuongTon, @MaCD, @MaNXB, @MoTa, @Detail, @MetaTitle, @NgayCapNhat", parameters);
+
+            if (result > 0)
+            {
+                bool tacgiamoi = false;
+                int MaSach = GetIDSachByName(TenSach);
+                int MaTGMoi = GetIDTGByName(HoTenTG);
+                ThamGiaModel t = new ThamGiaModel();
+
+                if (t.AlreadyJoin(MaSach, MaTGMoi) == 0) tacgiamoi = true;
+                if (tacgiamoi == true)
+                {
+                    t.DeleteThamGia(MaSach, MaTGCu);
+                    t.InsertThamGia(MaSach, MaTGMoi);
+                }
+            }
             return result;
         }
 

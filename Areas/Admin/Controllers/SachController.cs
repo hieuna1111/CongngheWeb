@@ -149,7 +149,7 @@ namespace WebApplication.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, _Sach collection, HttpPostedFileBase uploadhinh)
+        public ActionResult Edit(int id, _Sach collection, HttpPostedFileBase uploadhinh, HttpPostedFileBase uploadhinh2)
         {
             try
             {
@@ -170,7 +170,20 @@ namespace WebApplication.Areas.Admin.Controllers
                     }
                     else { collection.AnhBia = model.GetPathImageByID(collection.ID); }
 
-                    int result = model.Edit(id, collection.TenSach, collection.GiaBan, collection.AnhBia, collection.SoLuongTon, collection.TenCD, collection.TenNXB);
+                    if (uploadhinh2 != null && uploadhinh2.ContentLength > 0)
+                    {
+                        int IDSach = id;
+                        string _FileName = "";
+                        int index = uploadhinh2.FileName.IndexOf('.');
+                        _FileName = "sach" + (IDSach+1).ToString() + "." + uploadhinh2.FileName.Substring(index + 1);
+                        string _path = Path.Combine(Server.MapPath("~/Upload/sach"), _FileName);
+                        uploadhinh2.SaveAs(_path);
+                        collection.BiaSau = _FileName;
+                        db.SaveChanges();
+                    }
+                    else { collection.BiaSau = model.GetPathImageBiaSauByID(collection.ID); }
+
+                    int result = model.Edit(id, collection.TenSach, collection.GiaBan, collection.AnhBia, collection.BiaSau, collection.SoLuongTon, collection.HoTenTG, collection.TenCD, collection.TenNXB, collection.MoTa, collection.Detail);
 
                     if (result > 0)
                         return RedirectToAction("Index");

@@ -11,7 +11,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
-<div class="card-header py-3">
+<div class="card-header py-3 text-center">
     <h2 class="m-0 font-weight-bold text-primary">Sách</h2>
 </div>
 
@@ -28,6 +28,7 @@
     @Html.AntiForgeryToken()
 
     <div class="card shadow mb-4">
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
 
@@ -58,7 +59,22 @@
         <div class="form-group">
             <div class="col-md-4">
                 <img style="width:100px;height:100px" src="~/Upload/sach/@Model.AnhBia" />
-                <input type="file" id="uploadhinh" name="uploadhinh" accept="image"/>
+                <input type="file" id="uploadhinh" name="uploadhinh" accept="image" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-4">
+                <img style="width:100px;height:100px" src="~/Upload/sach/@Model.BiaSau" />
+                <input type="file" id="uploadhinh2" name="uploadhinh2" accept="image" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HoTenTG, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.HoTenTG, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HoTenTG, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -66,7 +82,6 @@
             @Html.LabelFor(model => model.TenCD, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.DropDownListFor(model => model.TenCD, null, htmlAttributes: new { @class = "form-control" })
-                @*@Html.EditorFor(model => model.TenCD, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.TenCD, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -75,13 +90,28 @@
             @Html.LabelFor(model => model.TenNXB, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.DropDownListFor(model => model.TenNXB, null, htmlAttributes: new { @class = "form-control" })
-                @*@Html.EditorFor(model => model.TenNXB, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.TenNXB, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            @Html.LabelFor(model => model.MoTa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Detail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-4">
                 <input type="submit" value="Cập Nhật" class="btn btn-outline-warning" />
             </div>
         </div>
@@ -91,3 +121,4 @@
 <div>
     @Html.ActionLink("Trở về", "Index")
 </div>
+

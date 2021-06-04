@@ -24,5 +24,19 @@ namespace WebApplication.Areas.Admin.Models
             db.ThamGias.Add(t);
             db.SaveChanges();
         }
+
+        public int AlreadyJoin(int masach, int matacgia)
+        {
+            var res = db.ThamGias.Where(x => x.MaSach == masach && x.MaTG == matacgia).FirstOrDefault();
+            if (res != null) return 1;
+            return 0;
+        }
+
+        public void DeleteThamGia(int masach, int matacgia)
+        {
+            var res = db.ThamGias.Where(x => x.MaSach == masach && x.MaTG == matacgia).FirstOrDefault();
+            db.ThamGias.Remove(res);
+            db.SaveChanges();
+        }
     }
 }
