@@ -18,7 +18,7 @@ namespace WebApplication.Areas.Admin.Controllers
             if (result == null)
             {
                 return View("~/Views/Home/Index.cshtml");
-            }    
+            }
 
             List<SearchField> list = new List<SearchField>()
             {
@@ -30,7 +30,7 @@ namespace WebApplication.Areas.Admin.Controllers
                 new SearchField() {Name = "GiaGiam", Value = "Giá giảm dần"}
             };
             ViewBag.searchField = new SelectList(list, "Name", "Value");
-        
+
             var sach = new SachModel();
 
             var model = sach.listAllPaging(page, pageSize, searchString, searchField, priceMin, priceMax);
@@ -72,7 +72,7 @@ namespace WebApplication.Areas.Admin.Controllers
             var model = new SachModel();
             ViewBag.HoTenTG = new SelectList(model.GetList_HoTenTG_IntoDropDownList(), "HoTenTG", "HoTenTG", selectedID);
             ViewBag.TenCD = new SelectList(model.GetList_TenCD_IntoDropDownList(), "TenCD", "TenCD", selectedID);
-            ViewBag.TenNXB = new SelectList(model.GetList_TenNXB_IntoDropDownList(), "TenNXB", "TenNXB", selectedID); 
+            ViewBag.TenNXB = new SelectList(model.GetList_TenNXB_IntoDropDownList(), "TenNXB", "TenNXB", selectedID);
         }
 
         [HttpGet]
@@ -85,7 +85,7 @@ namespace WebApplication.Areas.Admin.Controllers
             SetViewBag();
             return View();
         }
-         
+
         [HttpPost]
         public ActionResult Create(_Sach collection, HttpPostedFileBase uploadhinh, HttpPostedFileBase uploadhinh2)
         {
@@ -97,29 +97,31 @@ namespace WebApplication.Areas.Admin.Controllers
                     dbContext db = new dbContext();
                     if (uploadhinh != null && uploadhinh.ContentLength > 0)
                     {
+                        string MetaTitle = new MetaLink().nameToMeta(collection.TenSach);
                         int id = int.Parse(db.Saches.ToList().Last().ID.ToString());
                         id += 1;
                         string _FileName = "";
                         int index = uploadhinh.FileName.IndexOf('.');
-                        _FileName = "sach" + id.ToString() + "." + uploadhinh.FileName.Substring(index + 1);
+                        _FileName = MetaTitle + "1" + "." + uploadhinh.FileName.Substring(index + 1);
                         string _path = Path.Combine(Server.MapPath("~/Upload/sach"), _FileName);
                         uploadhinh.SaveAs(_path);
-                        collection.AnhBia = _FileName;
+                        collection.AnhBia = "~/Upload/sach/" + _FileName;
                         db.SaveChanges();
                     }
                     if (uploadhinh2 != null && uploadhinh2.ContentLength > 0)
                     {
+                        string MetaTitle = new MetaLink().nameToMeta(collection.TenSach);
                         int id = int.Parse(db.Saches.ToList().Last().ID.ToString());
                         id += 1;
                         string _FileName = "";
                         int index = uploadhinh2.FileName.IndexOf('.');
-                        _FileName = "sach" + (id+1).ToString() + "." + uploadhinh2.FileName.Substring(index + 1);
+                        _FileName = MetaTitle + "2" + "." + uploadhinh2.FileName.Substring(index + 1);
                         string _path = Path.Combine(Server.MapPath("~/Upload/sach"), _FileName);
                         uploadhinh2.SaveAs(_path);
-                        collection.BiaSau = _FileName;
+                        collection.BiaSau = "~/Upload/sach/" + _FileName;
                         db.SaveChanges();
                     }
-                    int result = model.Create(collection.TenSach, collection.GiaBan, collection.AnhBia, collection.BiaSau, collection.SoLuongTon, collection.HoTenTG,collection.TenCD, collection.TenNXB, collection.MoTa, collection.Detail);
+                    int result = model.Create(collection.TenSach, collection.GiaBan, collection.AnhBia, collection.BiaSau, collection.SoLuongTon, collection.HoTenTG, collection.TenCD, collection.TenNXB, collection.MoTa, collection.Detail);
 
                     if (result > 0)
                         return RedirectToAction("Index");
@@ -152,52 +154,48 @@ namespace WebApplication.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(int id, _Sach collection, HttpPostedFileBase uploadhinh, HttpPostedFileBase uploadhinh2)
         {
-            try
+            var model = new SachModel();
+
+            dbContext db = new dbContext();
+            if (uploadhinh != null && uploadhinh.ContentLength > 0)
             {
-                var model = new SachModel();
-                if (ModelState.IsValid)
-                {
-                    dbContext db = new dbContext();
-                    if (uploadhinh != null && uploadhinh.ContentLength > 0)
-                    {
-                        int IDSach = id;
-                        string _FileName = "";
-                        int index = uploadhinh.FileName.IndexOf('.');
-                        _FileName = "sach" + IDSach.ToString() + "." + uploadhinh.FileName.Substring(index + 1);
-                        string _path = Path.Combine(Server.MapPath("~/Upload/sach"), _FileName);
-                        uploadhinh.SaveAs(_path);
-                        collection.AnhBia = _FileName;
-                        db.SaveChanges();
-                    }
-                    else { collection.AnhBia = model.GetPathImageByID(collection.ID); }
-
-                    if (uploadhinh2 != null && uploadhinh2.ContentLength > 0)
-                    {
-                        int IDSach = id;
-                        string _FileName = "";
-                        int index = uploadhinh2.FileName.IndexOf('.');
-                        _FileName = "sach" + (IDSach+1).ToString() + "." + uploadhinh2.FileName.Substring(index + 1);
-                        string _path = Path.Combine(Server.MapPath("~/Upload/sach"), _FileName);
-                        uploadhinh2.SaveAs(_path);
-                        collection.BiaSau = _FileName;
-                        db.SaveChanges();
-                    }
-                    else { collection.BiaSau = model.GetPathImageBiaSauByID(collection.ID); }
-
-                    int result = model.Edit(id, collection.TenSach, collection.GiaBan, collection.AnhBia, collection.BiaSau, collection.SoLuongTon, collection.HoTenTG, collection.TenCD, collection.TenNXB, collection.MoTa, collection.Detail);
-
-                    if (result > 0)
-                        return RedirectToAction("Index");
-                    else
-                        ModelState.AddModelError("", "Cập nhật sách không thành công.");
-                }
-                SetViewBag(id);
-                return View(collection);
+                string MetaTitle = new MetaLink().nameToMeta(collection.TenSach);
+                int IDSach = id;
+                string _FileName = "";
+                int index = uploadhinh.FileName.IndexOf('.');
+                _FileName = MetaTitle + "1" + "." + uploadhinh.FileName.Substring(index + 1);
+                string _path = Path.Combine(Server.MapPath("~/Upload/sach"), _FileName);
+                uploadhinh.SaveAs(_path);
+                collection.AnhBia = "~/Upload/sach/" + _FileName;
+                db.SaveChanges();
             }
-            catch
+            else { collection.AnhBia = model.GetPathImageByID(collection.ID); }
+
+            if (uploadhinh2 != null && uploadhinh2.ContentLength > 0)
             {
-                return View();
+                string MetaTitle = new MetaLink().nameToMeta(collection.TenSach);
+                int IDSach = id;
+                string _FileName = "";
+                int index = uploadhinh2.FileName.IndexOf('.');
+                _FileName = MetaTitle + "2" + "." + uploadhinh2.FileName.Substring(index + 1);
+                string _path = Path.Combine(Server.MapPath("~/Upload/sach"), _FileName);
+                uploadhinh2.SaveAs(_path);
+                collection.BiaSau = "~/Upload/sach/" + _FileName;
+                db.SaveChanges();
             }
+            else { collection.BiaSau = model.GetPathImageBiaSauByID(collection.ID); }
+
+            if (ModelState.IsValid)
+            {
+                int result = model.Edit(id, collection.TenSach, collection.GiaBan, collection.AnhBia, collection.BiaSau, collection.SoLuongTon, collection.HoTenTG, collection.TenCD, collection.TenNXB, collection.MoTa, collection.Detail);
+
+                if (result > 0)
+                    return RedirectToAction("Index");
+                else
+                    ModelState.AddModelError("", "Cập nhật sách không thành công.");
+            }
+            SetViewBag(id);
+            return View(collection);
         }
 
         [HttpGet]

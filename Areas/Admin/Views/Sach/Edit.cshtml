@@ -57,16 +57,20 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.AnhBia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <img style="width:100px;height:100px" src="~/Upload/sach/@Model.AnhBia" />
+                <img style="width:100px;height:100px" src="@Url.Content(Model.AnhBia)" />
                 <input type="file" id="uploadhinh" name="uploadhinh" accept="image" />
+                @Html.ValidationMessageFor(model => model.AnhBia, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.BiaSau, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <img style="width:100px;height:100px" src="~/Upload/sach/@Model.BiaSau" />
+                <img style="width:100px;height:100px" src="@Url.Content(Model.BiaSau)" />
                 <input type="file" id="uploadhinh2" name="uploadhinh2" accept="image" />
+                @Html.ValidationMessageFor(model => model.BiaSau, "", new { @class = "text-danger" })
             </div>
         </div>
 

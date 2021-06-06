@@ -1,5 +1,101 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+@*<html lang="en">*@
+
+<style>
+    .dropbtn {
+        background-color: #40403E;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #FE980F
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #FE980F;
+    }
+</style>
+
+<style>
+    .hvr-hover {
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        position: relative;
+        background: #FE980F;
+        -webkit-transition-property: color;
+        transition-property: color;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+        .hvr-hover::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #f1f1f1;
+            border-radius: 100%;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+            -webkit-transition-property: transform;
+            transition-property: transform;
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+        }
+
+        .hvr-hover:hover::after {
+            -webkit-transform: scale(2);
+            transform: scale(2);
+            color: #ffffff;
+        }
+
+    .hvr-hover {
+        overflow: hidden;
+    }
+
+    ul.cart-list > li.total > .btn:hover {
+        color: #ffffff;
+    }
+</style>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,16 +161,8 @@
 
                     </div>
                     <div class="col-sm-8">
-                        
-
                         <div class="shop-menu pull-right">
-                            <ul class="nav navbar-nav">
-                                @*<li><a href="#"><i class="fa fa-user"></i> Account</a></li>*@
-                                @*<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>*@
-                                @*<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>*@
-                                <li><a href="~/Cart/Index"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-                                <li><a href="~/Admin/User/LoginAction"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-                            </ul>
+                            @{Html.RenderAction("TopMenu", "Home"); }
                         </div>
                     </div>
                 </div>
@@ -94,27 +182,7 @@
                             </button>
                         </div>
                         <div class="mainmenu pull-left">
-                            <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="index.html" class="active">Trang chủ</a></li>
-                                <li class="dropdown">
-                                    <a href="#">Danh mục<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-                                        <li><a href="product-details.html">Product Details</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="~/Admin/User/LoginAction">Login</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact-us.html">Liên hệ</a></li>
-                            </ul>
+                            @{Html.RenderAction("MainMenu", "Home"); }
                         </div>
                     </div>
                     <div class="col-sm-3">
@@ -126,7 +194,7 @@
             </div>
         </div>
     </header><!--/header-->
-
+    @RenderSection("Slide", required: false)
     @RenderBody()
 
     <footer id="footer">
@@ -136,8 +204,8 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="companyinfo">
-                            <h2><span>e</span>-shopper</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+                            <h2><span>Books</span>-Store</h2>
+                            <p>Thương hiệu số 1 Việt Nam</p>
                         </div>
                     </div>
                     <div class="col-sm-7">
@@ -145,14 +213,13 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="~/Assets/Admin2/images/home/iframe1.png" alt="" />
+                                        <img src="~/Assets/Admin2/images/home/_iframe.jpeg" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
                                     </div>
                                 </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
+                                <h2>24 DEC 2021</h2>
                             </div>
                         </div>
 
@@ -160,14 +227,13 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="~/Assets/Admin2/images/home/iframe2.png" alt="" />
+                                        <img src="~/Assets/Admin2/images/home/_iframe2.jpeg" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
                                     </div>
                                 </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
+                                <h2>24 DEC 2021</h2>
                             </div>
                         </div>
 
@@ -175,14 +241,13 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="~/Assets/Admin2/images/home/iframe3.png" alt="" />
+                                        <img src="~/Assets/Admin2/images/home/_iframe3.jpeg" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
                                     </div>
                                 </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
+                                <h2>24 DEC 2021</h2>
                             </div>
                         </div>
 
@@ -190,21 +255,20 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="~/Assets/Admin2/images/home/iframe4.png" alt="" />
+                                        <img src="~/Assets/Admin2/images/home/_iframe4.jpeg" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
                                     </div>
                                 </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
+                                <h2>24 DEC 2021</h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="address">
                             <img src="~/Assets/Admin2/images/home/map.png" alt="" />
-                            <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+                            <p>Địa chỉ: 55 Quang Trung, Nguyễn Du, Hai Bà Trưng, Hà Nội</p>
                         </div>
                     </div>
                 </div>
@@ -280,8 +344,8 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
-                    <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-                    <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+                    <p class="pull-left">Copyright © 2021 Books-SHOPPER Inc. All rights reserved.</p>
+                    <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Duc Duy & Hieu Nguyen</a></span></p>
                 </div>
             </div>
         </div>
@@ -296,4 +360,3 @@
     <script src="~/Assets/Admin2/js/jquery.prettyPhoto.js"></script>
     <script src="~/Assets/Admin2/js/main.js"></script>
 </body>
-</html>

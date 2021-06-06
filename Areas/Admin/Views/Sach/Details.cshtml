@@ -46,8 +46,8 @@
                     <td>@Html.DisplayFor(model => model.TenSach)</td>
                     <td>@Html.DisplayFor(model => model.GiaBan)</td>
                     <td>@Html.DisplayFor(model => model.SoLuongTon)</td>
-                    <td><img style="width:100px;height:100px" src="~/Upload/sach/@Model.AnhBia" /></td>
-                    <td><img style="width:100px;height:100px" src="~/Upload/sach/@Model.BiaSau" /></td>
+                    <td><img style="width:100px;height:100px" src="@Url.Content(Model.AnhBia)" /></td>
+                    <td><img style="width:100px;height:100px" src="@Url.Content(Model.BiaSau)" /></td>
                     <td>@Html.DisplayFor(model => model.HoTenTG)</td>
                     <td>@Html.DisplayFor(model => model.TenCD)</td>
                     <td>@Html.DisplayFor(model => model.TenNXB)</td>

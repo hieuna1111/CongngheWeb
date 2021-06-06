@@ -1,0 +1,138 @@
+﻿
+@model WebApplication.Models.EF.ChuDe
+
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var BookByCategory = (List<WebApplication.Models.EF.Sach>)ViewBag.BookByCategory;
+}
+
+<style>
+    .productinfo p {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #ffa31a;
+    }
+</style>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Category</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-productsr-->
+                        @{ Html.RenderAction("ProductCategory", "Product");}
+                    </div><!--/category-productsr-->
+
+                    <div class="brands_products">
+                        <!--brands_products-->
+                        <h2>Brands</h2>
+                        <div class="brands-name">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href=""> <span class="pull-right">(50)</span>Acne</a></li>
+                                <li><a href=""> <span class="pull-right">(56)</span>Grüne Erde</a></li>
+                                <li><a href=""> <span class="pull-right">(27)</span>Albiro</a></li>
+                                <li><a href=""> <span class="pull-right">(32)</span>Ronhill</a></li>
+                                <li><a href=""> <span class="pull-right">(5)</span>Oddmolly</a></li>
+                                <li><a href=""> <span class="pull-right">(9)</span>Boudestijn</a></li>
+                                <li><a href=""> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
+                            </ul>
+                        </div>
+                    </div><!--/brands_products-->
+
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">@Model.TenCD</h2>
+
+                    @foreach (var item in BookByCategory)
+                    {
+                        var url = "/chi-tiet/" + @item.MetaTitle + "-" + @item.ID;
+                        <div class="col-sm-3">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <a href="@url">
+                                            <img style="width:160px;height:230px" src="@Url.Content(item.AnhBia)" alt="" data-src />
+                                        </a>
+                                        <p>@item.TenSach</p>
+                                        <p>@item.GiaBan VND</p>
+                                        @*<p>@item.MoTa</p>*@
+                                        <a href="@url" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+
+                    <ul class="pagination">
+                        @if (ViewBag.TotalPage > 1)
+                        {
+                            var pageDisplay = (int)(ViewBag.MaxPage);
+                            int totalPage = (int)ViewBag.TotalPage;
+                            int currentPage = (int)ViewBag.Page;
+
+                            // Create numeric link
+                            var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+                            var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+
+                            var link = "/chu-de/" + Model.MetaTitle + "-" + Model.ID;
+                            <nav>
+                                <ul class="pagination">
+                                    @if (currentPage > ViewBag.First)
+                                    {
+                                        <li>
+                                            <a href="@link?page=@ViewBag.First" title="Trang đầu" class="first"><i class="fa fa-angle-double-left"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="@link?page=@ViewBag.Prev" title="Trang trước" class="prev"><i class="fa fa-angle-left"></i></a>
+                                        </li>
+
+                                    }
+                                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                                    {
+                                        if (currentPage == i)
+                                        {
+                                            <li>
+                                                <a href="@link?page=@i" class="active" title="Trang @i">@i</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="@link?page=@i" class="pos" title="Trang @i">@i</a>
+                                            </li>
+                                        }
+                                    }
+                                    @if (currentPage < totalPage)
+                                    {
+                                        <li>
+                                            <a href="@link?page=@ViewBag.Next" title="Trang sau" class="next"><i class="fa fa-angle-right"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="@link?page=@ViewBag.Last" title="Trang cuối" class="last"><i class="fa fa-angle-double-right"></i></a>
+                                        </li>
+                                    }
+                                </ul>
+
+                            </nav>
+                        }
+                        else
+                        {
+                            <h1>Không tồn tại sản phẩm</h1>
+                        }
+                    </ul>
+                </div><!--features_items-->
+            </div>
+        </div>
+    </div>
+</section>
+

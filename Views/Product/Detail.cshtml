@@ -1,0 +1,195 @@
+﻿@model WebApplication.Models.EF.Sach
+@{ ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var RecommendActive = (List<WebApplication.Models.EF.Sach>)ViewBag.RecommendItemActive;
+    var RecommendItem = (List<WebApplication.Models.EF.Sach>)ViewBag.RecommendItem; }
+
+<style>
+    .product-information span span {
+        color: #FE980F;
+        float: left;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        margin-right: 20px;
+        margin-top: 0px;
+    }
+    .view-product img {
+        border: 1px solid #F7F7F0;
+        height: 343px;
+        width: 100%;
+    }
+</style>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Category</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-productsr-->
+                        @{ Html.RenderAction("ProductCategory", "Product");}
+
+                    </div><!--/category-products-->
+
+                    <div class="brands_products">
+                        <!--brands_products-->
+                        <h2>Brands</h2>
+                        <div class="brands-name">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href=""> <span class="pull-right">(50)</span>Acne</a></li>
+                                <li><a href=""> <span class="pull-right">(56)</span>Grüne Erde</a></li>
+                                <li><a href=""> <span class="pull-right">(27)</span>Albiro</a></li>
+                                <li><a href=""> <span class="pull-right">(32)</span>Ronhill</a></li>
+                                <li><a href=""> <span class="pull-right">(5)</span>Oddmolly</a></li>
+                                <li><a href=""> <span class="pull-right">(9)</span>Boudestijn</a></li>
+                                <li><a href=""> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
+                            </ul>
+                        </div>
+                    </div><!--/brands_products-->
+
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="product-details">
+                    <!--product-details-->
+                    <div class="col-sm-4">
+                        <div class="view-product">
+                            <img src="@Url.Content(Model.AnhBia)" alt="" />
+                        </div>
+                        <div id="similar-product" class="carousel slide" data-ride="carousel">
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <a href=""><img src="@Url.Content(Model.BiaSau)" alt="" style="width:30%; height:30%"></a>
+                                </div>
+                            </div>
+
+                            <!-- Controls -->
+                            <a class="left item-control" href="#similar-product" data-slide="prev">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a class="right item-control" href="#similar-product" data-slide="next">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="product-information">
+                            <!--/product-information-->
+                            <img src="~/Assets/Admin2/images/product-details/new.jpg" class="newarrival" alt="" />
+                            <h2>@Model.TenSach</h2>
+                            <p>Đã bán: 100</p>
+                            <img src="~/Assets/Admin2/images/product-details/rating.png" alt="" />
+                            <span>
+                                <span>@Model.GiaBan VND</span>
+                                <label>Quantity:</label>
+                                <input type="text" value="1" />
+                                <button type="button" class="btn btn-fefault cart">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Add to cart
+                                </button>
+                            </span>
+                            <p><b>Availability:</b> In Stock</p>
+                            <p><b>Condition:</b> New</p>
+                            <p><b>Brand: </b>@Model.NhaXuatBan.TenNXB</p>
+
+                        </div><!--/product-information-->
+                    </div>
+
+
+
+                </div><!--/product-details-->
+
+                <div class="blog-post-area">
+                    <h2 class="title text-center">Chi tiết sản phẩm</h2>
+                    <div class="single-blog-post">
+                        <a href="">
+                            <img src="@Url.Content(Model.AnhBia)" alt="" style="width:20%; height:20%">
+                        </a>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p> <br>
+
+                        <p>
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                        </p> <br>
+
+                        <p>
+                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                        </p> <br>
+
+                        <p>
+                            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+                        </p>
+                        <div class="pager-area">
+                            <ul class="pager pull-right">
+                                <li><a href="#">Pre</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recommended_items">
+                    <!--recommended_items-->
+                    <h2 class="title text-center">Sản phẩm tương tự</h2>
+
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                @foreach (var item in RecommendActive)
+                                {
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <a href="#">
+                                        <img src="@Url.Content(item.AnhBia)" alt="" style="width:30%; height:30%" />
+                                        <h2>@item.TenSach</h2>
+                                        <h3>@item.GiaBan VND</h3>
+                                        <p>@item.MoTa</p>
+                                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>}
+                            </div>
+                            <div class="item">
+                                @foreach (var item in RecommendItem)
+                                {
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="@Url.Content(item.AnhBia)" alt="" style="width:30%; height:30%" />
+                                    <h2>@item.TenSach</h2>
+                                    <h3>@item.GiaBan VND</h3>
+                                    <p>@item.MoTa</p>
+                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>}
+                            </div>
+                        </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div><!--/recommended_items-->
+
+            </div>
+        </div>
+    </div>
+</section>
+

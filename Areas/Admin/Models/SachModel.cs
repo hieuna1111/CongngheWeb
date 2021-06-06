@@ -92,7 +92,7 @@ namespace WebApplication.Areas.Admin.Models
                 model = model.OrderBy(x => x.GiaBan).ToList();
             }
 
-            return model.ToPagedList(page, pageSize);
+            return model.OrderByDescending(x=>x.ID).ToPagedList(page, pageSize);
         }
 
         public string GetPathImageByID(int id)
@@ -198,7 +198,7 @@ namespace WebApplication.Areas.Admin.Models
             if (result > 0)
             {
                 bool tacgiamoi = false;
-                int MaSach = GetIDSachByName(TenSach);
+                int MaSach = ID;
                 int MaTGMoi = GetIDTGByName(HoTenTG);
                 ThamGiaModel t = new ThamGiaModel();
 

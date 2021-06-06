@@ -47,10 +47,12 @@ namespace WebApplication.Models._EF
 
         [StringLength(500)]
         [DisplayName("Mô tả")]
+        [Required(ErrorMessage = "Bạn chưa nhập mô tả")]
         public string MoTa { get; set; }
 
         [Column(TypeName = "ntext")]
         [DisplayName("Xem chi tiết")]
+        [Required(ErrorMessage = "Bạn chưa nhập xem chi tiết")]
         public string Detail { get; set; }
     }
 }

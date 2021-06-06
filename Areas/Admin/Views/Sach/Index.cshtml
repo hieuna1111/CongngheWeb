@@ -111,7 +111,7 @@
                                         @Html.DisplayFor(modelItem => item.SoLuongTon)
                                     </td>
                                     <td>
-                                        <img style="width:100px;height:100px" src="~/Upload/sach/@item.AnhBia" />
+                                        <img style="width:100px;height:100px" src="@Url.Content(item.AnhBia)" />
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.HoTenTG)
