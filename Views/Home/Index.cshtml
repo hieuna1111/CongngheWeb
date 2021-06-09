@@ -4,6 +4,7 @@
     var Slides = (List<WebApplication.Models.EF.Slide>)ViewBag.Slides;
     var numberSlide = 0;
     var ListNewBook = (List<WebApplication.Models.EF.Sach>)ViewBag.ListNewBook;
+    var BestSellingBook = (List<WebApplication.Models.EF.Sach>)ViewBag.BestSellingBook;
     var ListRecommend = (List<WebApplication.Models.EF.Sach>)ViewBag.ListRecommend;
 }
 <style>
@@ -153,7 +154,7 @@
                                         <p>@item.TenSach</p>
                                         <p>@item.GiaBan VND</p>
                                         @*<p>@item.MoTa</p>*@
-                                        <a href="@url" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a href="/them-gio-hang?productID=@item.ID&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
 
                                 </div>
@@ -166,94 +167,30 @@
                 <div class="features_items">
                     <!--features_items-->
                     <h2 class="title text-center">
-                        <a class="btn hvr-hover" href="~/Product/VanHoc">Văn Học</a>
+                        <a class="btn hvr-hover" href="~/Product/VanHoc">Sách bán chạy</a>
                     </h2>
-                    <div class="col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="~/Assets/Admin2/images/home/product1.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    @foreach (var item in BestSellingBook)
+                    {
+                        var url = "/chi-tiet/" + @item.MetaTitle + "-" + @item.ID;
+                        <div class="col-sm-3">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <a href="@url">
+                                            <img style="width:160px;height:230px" src="@Url.Content(item.AnhBia)" alt="" data-src />
+                                        </a>
+                                        <p>@item.TenSach</p>
+                                        <p>@item.GiaBan VND</p>
+                                        @*<p>@item.MoTa</p>*@
+                                        <a href="/them-gio-hang?productID=@item.ID&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </div>
+
                                 </div>
 
                             </div>
-
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="~/Assets/Admin2/images/home/product2.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
+                    }
 
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="~/Assets/Admin2/images/home/product3.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="~/Assets/Admin2/images/home/product4.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-
-                                <img src="~/Assets/Admin2/images/home/new.png" class="new" alt="" />
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="~/Assets/Admin2/images/home/product5.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-
-                                <img src="~/Assets/Admin2/images/home/sale.png" class="new" alt="" />
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="~/Assets/Admin2/images/home/product6.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
 
                 </div><!--features_items-->
 

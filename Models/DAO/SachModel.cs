@@ -19,6 +19,11 @@ namespace WebApplication.Models.DAO
             return db.Saches.OrderByDescending(x => x.NgayCapNhat).Take(top).ToList();
         }
 
+        public List<Sach> BestSellingBook(int top)
+        {
+            return db.Database.SqlQuery<Sach>("select * from Sach where ID in (SELECT TOP(8) ProductID FROM OrderDetail GROUP BY ProductID ORDER BY SUM(Quantity) DESC)").Take(top).ToList();
+        }
+
         public List<Sach> listRecommend(int top)
         {
             return db.Saches.OrderByDescending(x => x.GiaBan).Take(top).ToList();
