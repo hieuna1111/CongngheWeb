@@ -2,7 +2,9 @@
 @{ ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var RecommendActive = (List<WebApplication.Models.EF.Sach>)ViewBag.RecommendItemActive;
-    var RecommendItem = (List<WebApplication.Models.EF.Sach>)ViewBag.RecommendItem; }
+    var RecommendItem = (List<WebApplication.Models.EF.Sach>)ViewBag.RecommendItem;
+    var selectNumbericSold = ViewBag.NumbericSold;
+}
 
 <style>
     .product-information span span {
@@ -14,6 +16,7 @@
         margin-right: 20px;
         margin-top: 0px;
     }
+
     .view-product img {
         border: 1px solid #F7F7F0;
         height: 343px;
@@ -83,15 +86,16 @@
                             <!--/product-information-->
                             <img src="~/Assets/Admin2/images/product-details/new.jpg" class="newarrival" alt="" />
                             <h2>@Model.TenSach</h2>
-                            <p>Đã bán: 100</p>
                             <img src="~/Assets/Admin2/images/product-details/rating.png" alt="" />
+                            <p>Đã bán: @selectNumbericSold</p>
                             <span>
                                 <span>@Model.GiaBan VND</span>
-                                <label>Quantity:</label>
-                                <input type="text" value="1" />
-                                <button type="button" class="btn btn-fefault cart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Add to cart
+                                @*<label>Quantity:</label>
+                                    <input type="text" value="1" />*@
+                                <button type="submit" class="btn btn-fefault cart">
+                                    <a href="/them-gio-hang?productID=@Model.ID&quantity=1" class=""><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    @*<i class="fa fa-shopping-cart"></i>
+                                        Add to cart*@
                                 </button>
                             </span>
                             <p><b>Availability:</b> In Stock</p>

@@ -5,7 +5,7 @@
     var numberSlide = 0;
     var ListNewBook = (List<WebApplication.Models.EF.Sach>)ViewBag.ListNewBook;
     var BestSellingBook = (List<WebApplication.Models.EF.Sach>)ViewBag.BestSellingBook;
-    var ListRecommend = (List<WebApplication.Models.EF.Sach>)ViewBag.ListRecommend;
+    var listComicManga = (List<WebApplication.Models.EF.Sach>)ViewBag.listComicManga;
 }
 <style>
     .productinfo p {
@@ -197,51 +197,34 @@
                 <div class="recommended_items">
                     <!--recommended_items-->
                     <h2 class="title text-center">
-                        <a class="btn hvr-hover" href="~/Product/VanHoc">Văn Học</a>
+                        <a class="btn hvr-hover" href="~/Product/VanHoc">Comic Manga</a>
                     </h2>
 
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="~/Assets/Admin2/images/home/recommend1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                @foreach (var item in listComicManga)
+                                {
+                                    var url = "/chi-tiet/" + @item.MetaTitle + "-" + @item.ID;
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <a href="@url">
+                                                        <img style="width:130px;height:200px" src="@Url.Content(item.AnhBia)" alt="" data-src />
+                                                    </a>
+                                                    <p>@item.TenSach</p>
+                                                    <p>@item.GiaBan VND</p>
+                                                    @*<p>@item.MoTa</p>*@
+                                                    <a href="/them-gio-hang?productID=@item.ID&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                </div>
+
                                             </div>
 
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="~/Assets/Admin2/images/home/recommend2.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
+                                }
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="~/Assets/Admin2/images/home/recommend3.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="item">
                                 <div class="col-sm-4">
@@ -270,7 +253,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-4">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">

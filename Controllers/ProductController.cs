@@ -26,11 +26,20 @@ namespace WebApplication.Controllers
 
             int maxPage = 5;
             int totalPage = 0;
-            totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize));
+            //do cái total page này lấy số nguyên nên nó vậy
+            float sl1 = totalRecord % pageSize;
+            if (sl1 > 0)
+            {
+                totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize))+1;
+            }  
+            else
+            {
+                totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize));
+            }    
             ViewBag.TotalPage = totalPage;
             ViewBag.MaxPage = maxPage;
             ViewBag.First = 1;
-            ViewBag.Last = maxPage;
+            ViewBag.Last = totalPage;
             ViewBag.Next = page + 1;
             ViewBag.Prev = page - 1;
 
@@ -50,6 +59,7 @@ namespace WebApplication.Controllers
             var res = new SachModel().getBookDetail(id);
             ViewBag.RecommendItemActive = new SachModel().RecommendActive(3, res.MaCD.GetValueOrDefault());
             ViewBag.RecommendItem = new SachModel().RecommendItem(3, res.MaCD.GetValueOrDefault());
+            ViewBag.NumbericSold = new OrderDetailModel().NumbericSold(id);
             return View(res);
         }
 

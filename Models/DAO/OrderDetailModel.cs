@@ -27,5 +27,19 @@ namespace WebApplication.Models.DAO
                 return false;
             }
         }
+
+        public int NumbericSold(int id)
+        {
+            int SoLuong = 0;
+            var sluong = db.OrderDetails.Where(e => e.ProductID == id).ToList();
+            if (sluong != null)
+            {
+                foreach (var item in sluong)
+                {
+                    SoLuong = SoLuong + (int)item.Quantity;
+                }
+            }
+            return SoLuong;
+        }
     }
 }

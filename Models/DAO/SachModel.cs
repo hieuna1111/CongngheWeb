@@ -21,18 +21,18 @@ namespace WebApplication.Models.DAO
 
         public List<Sach> BestSellingBook(int top)
         {
-            return db.Database.SqlQuery<Sach>("select * from Sach where ID in (SELECT TOP(8) ProductID FROM OrderDetail GROUP BY ProductID ORDER BY SUM(Quantity) DESC)").Take(top).ToList();
+            return db.Database.SqlQuery<Sach>("select * from Sach where ID in (SELECT TOP("+top+") ProductID FROM OrderDetail GROUP BY ProductID ORDER BY SUM(Quantity) DESC)").ToList();
         }
 
-        public List<Sach> listRecommend(int top)
+        public List<Sach> listComicManga(int top)
         {
-            return db.Saches.OrderByDescending(x => x.GiaBan).Take(top).ToList();
+            return db.Database.SqlQuery<Sach>("select * from Sach where ID in (select TOP(4) ID from Sach where TenSach like '%Doraemon%' and MaCD = 40  group by ID Order by MAX(SoLuongTon) DESC)").ToList();
         }
 
         public List<Sach> getBookByCategory(int catID, ref int totalRecord, int pageIndex = 1, int pageSize = 1)
         {
             totalRecord = db.Saches.Where(x => x.MaCD == catID && x.Status == true && x.SoLuongTon > 0).ToList().Count();
-            return db.Saches.Where(x => x.MaCD == catID && x.Status == true && x.SoLuongTon > 0).OrderBy(x => x.GiaBan).Skip((pageSize - 1) * pageIndex).Take(pageSize).ToList();
+            return db.Saches.Where(x => x.MaCD == catID && x.Status == true && x.SoLuongTon > 0).OrderBy(x => x.GiaBan).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         }
 
         public Sach getBookDetail(int id)
@@ -49,5 +49,6 @@ namespace WebApplication.Models.DAO
         {
             return db.Saches.Where(x => x.MaCD == idChuDe).OrderBy(x => x.GiaBan).Take(top).ToList();
         }
+
     }
 }
