@@ -87,6 +87,7 @@ namespace WebApplication.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(_Sach collection, HttpPostedFileBase uploadhinh, HttpPostedFileBase uploadhinh2)
         {
             var model = new SachModel();
@@ -152,6 +153,7 @@ namespace WebApplication.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(int id, _Sach collection, HttpPostedFileBase uploadhinh, HttpPostedFileBase uploadhinh2)
         {
             var model = new SachModel();

@@ -31,5 +31,10 @@ namespace WebApplication.Models.DAO
 
             return res.OrderByDescending(s => s.ID).ToPagedList(page, pageSize);
         }
+
+        public TinTuc getNewsDetail(int id)
+        {
+            return db.TinTucs.Find(id);
+        }
     }
 }

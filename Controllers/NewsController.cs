@@ -18,5 +18,12 @@ namespace WebApplication.Controllers
             ViewBag.searchString = searchString;
             return View(model);
         }
+
+        public ActionResult Detail(int id)
+        {
+            var tintuc = new TinTucModel();
+            var res = tintuc.getNewsDetail(id);
+            return View(res);
+        }
     }
 }

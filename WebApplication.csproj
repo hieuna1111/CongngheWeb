@@ -5257,7 +5257,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Product\VanHoc.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -5274,6 +5273,7 @@
     <Content Include="Views\Cart\SuccessPayment.cshtml" />
     <Content Include="Views\Cart\UnSuccessPayment.cshtml" />
     <Content Include="Views\Product\ProductSearch.cshtml" />
+    <Content Include="Views\News\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

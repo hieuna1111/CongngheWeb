@@ -9,29 +9,12 @@
 }
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Dashboard</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="~/Assets/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="~/Assets/Admin/css/sb-admin-2.min.css" rel="stylesheet">
-
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 <style>
-
     /* thiết lập style cho thẻ a */
     .pagination a {
         color: #4e73df;
@@ -58,106 +41,98 @@
 </style>
 
 
+<div class="card-header py-3 text-center">
+    <h2 class="m-0 font-weight-bold text-primary">Đơn Hàng</h2>
+</div>
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">LIST BOOKS</h6>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-
-                @using (Html.BeginForm("Index", "Order", FormMethod.Get))
-                {
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small col-12" placeholder="Nhập từ khóa ..."
-                               aria-label="Search" value="@ViewBag.searchString" aria-describedby="basic-addon2" name="searchString">
-                        @*@Html.DropDownList("searchField", ViewBag.searchField as SelectList, new { @class = "form-control" })
-                            <input type="number" class="form-control bg-light border-0 small col-12" placeholder="Giá từ ..."
-                                   aria-label="Search" value="@ViewBag.giaMin" aria-describedby="basic-addon2" name="giaMin">
-                            <input type="number" class="form-control bg-light border-0 small col-12" placeholder="Đến "
-                                   aria-label="Search" value="@ViewBag.giaMax" aria-describedby="basic-addon2" name="giaMax">*@
-
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">Tìm kiếm</button>
-                        </div>
-                    </div>
-
-                }
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Admin">Trang Chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Đơn Hàng</li>
+    </ol>
+</nav>
 
 
-                <!-- Topbar Navbar -->
+<div class="panel-body">
+    <div class="card shadow mb-4">
+        <div class="row-cols-1">
+            <div class="col-12">
+                <div class="table-responsive">
+                    @*<table>
+            <tr>
+                <th>
+                    <a href="~/Admin/Order/Create" class="btn btn-outline-success"><span class="glyphicon glyphicon-search"></span>Thêm mới</a>
+                </th>
+            </tr>
+        </table>
+        <hr />*@
 
-            </nav>
-
-            <p>
-                @Html.ActionLink("Thêm tin mới", "Create")
-            </p>
-
-
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Tên khách hàng</th>
-                        <th>Địa chỉ</th>
-
-                        <th>Điện thoại</th>
-                        <th>Ngày đặt</th>
-                        <th>Tổng tiền</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
+                    @using (Html.BeginForm("Index", "Order", FormMethod.Get))
                     {
-                        var record = item.OrderDetails.FirstOrDefault(x => x.OrderID == item.ID);
-                        var total = record.Quantity * record.Price;
-                        <tr>
-                            <td>@item.ShipName</td>
-                            <td>@item.ShipAddress</td>
-                            <td>@item.ShipMobile</td>
-                            <td>@item.CreatedDate</td>
-                            <td>@total</td>
-                            @if (item.Status == false)
-                            {
-                                <td>
-                                    @Html.ActionLink("Xác nhận", "Confirm", new { id = item.ID }) |
-                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.ID }) |
-                                    @Html.ActionLink("Xóa", "Delete", new { id = item.ID })
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.ID })
-                                </td>
+                        <div class="input-group">
+                            <input type="text" class="from-control bg-light border-0 small col-3" placeholder="Search for..."
+                                   aria-label="Search" value="@ViewBag.searchString" aria-describedby="basic-addon2" name="searchString" />
+                            <div style="padding:5px"></div>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    Search
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
 
-                            }
-
-                        </tr>
                     }
-                </tbody>
-            </table>
+                    <br />
 
-            @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-                        <div class="col-sm-12 col-md-7">
-                            @Html.PagedListPager(Model,
-                page => Url.Action("Index", new { page, @searchString = @ViewBag.searchString, @searchField = @ViewBag._searchField, @giaMin = ViewBag.giaMin, @giaMax = ViewBag.giaMax }),
-                new PagedListRenderOptions()
-                {
-                    UlElementClasses = new List<string> { "pagination" },
-                    LiElementClasses = new List<string> { "paginate_button page-item " },
-                    ContainerDivClasses = new List<string> { "dataTables_paginate paging_simple_numbers" }
-                })
+                    <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Tên khách hàng</th>
+                                <th>Địa chỉ</th>
 
-                        </div>*@
+                                <th>Điện thoại</th>
+                                <th>Ngày đặt</th>
+                                <th>Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var record = item.OrderDetails.FirstOrDefault(x => x.OrderID == item.ID);
+                                var total = record.Quantity * record.Price;
+                                <tr>
+                                    <td>@item.ShipName</td>
+                                    <td>@item.ShipAddress</td>
+                                    <td>@item.ShipMobile</td>
+                                    <td>@item.CreatedDate</td>
+                                    <td>@total</td>
+                                    @if (item.Status == false)
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Xác nhận", "Confirm", new { id = item.ID }) |
+                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.ID }) |
+                                            @Html.ActionLink("Xóa", "Delete", new { id = item.ID })
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.ID })
+                                        </td>
 
-
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.searchString }))
-
-
-
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<div class="pagination">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.searchString }))
+</div>
+

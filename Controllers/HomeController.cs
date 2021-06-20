@@ -15,6 +15,7 @@ namespace WebApplication.Controllers
             ViewBag.ListNewBook = new SachModel().listNewBook(8);
             ViewBag.BestSellingBook = new SachModel().BestSellingBook(8);
             ViewBag.listComicManga = new SachModel().listComicManga(4);
+            ViewBag.listComicManga2 = new SachModel().listComicManga2(4);
             return View();
         }
 

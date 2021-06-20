@@ -29,6 +29,11 @@ namespace WebApplication.Models.DAO
             return db.Database.SqlQuery<Sach>("select * from Sach where ID in (select TOP(4) ID from Sach where TenSach like '%Doraemon%' and MaCD = 40  group by ID Order by MAX(SoLuongTon) DESC)").ToList();
         }
 
+        public List<Sach> listComicManga2(int top)
+        {
+            return db.Database.SqlQuery<Sach>("select * from Sach where ID in (select TOP(4) ID from Sach where TenSach like '%Conan%' and MaCD = 40  group by ID Order by MAX(SoLuongTon) DESC)").ToList();
+        }
+
         public List<Sach> getBookByCategory(int catID, ref int totalRecord, int pageIndex = 1, int pageSize = 1)
         {
             totalRecord = db.Saches.Where(x => x.MaCD == catID && x.Status == true && x.SoLuongTon > 0).ToList().Count();

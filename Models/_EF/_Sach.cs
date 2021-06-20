@@ -52,7 +52,6 @@ namespace WebApplication.Models._EF
 
         [Column(TypeName = "ntext")]
         [DisplayName("Xem chi tiết")]
-        [Required(ErrorMessage = "Bạn chưa nhập xem chi tiết")]
         public string Detail { get; set; }
     }
 }

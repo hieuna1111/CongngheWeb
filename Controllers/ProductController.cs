@@ -57,16 +57,10 @@ namespace WebApplication.Controllers
         public ActionResult Detail(int id)
         {
             var res = new SachModel().getBookDetail(id);
-            ViewBag.RecommendItemActive = new SachModel().RecommendActive(3, res.MaCD.GetValueOrDefault());
-            ViewBag.RecommendItem = new SachModel().RecommendItem(3, res.MaCD.GetValueOrDefault());
+            ViewBag.RecommendItemActive = new SachModel().RecommendActive(4, res.MaCD.GetValueOrDefault());
+            ViewBag.RecommendItem = new SachModel().RecommendItem(4, res.MaCD.GetValueOrDefault());
             ViewBag.NumbericSold = new OrderDetailModel().NumbericSold(id);
             return View(res);
-        }
-
-        [HttpGet]
-        public ActionResult VanHoc()
-        {
-            return View();
         }
 
         public ActionResult ProductSearch(string searchString = "", int giaMin = 0, int giaMax = 0, int page = 1, int pageSize = 4)

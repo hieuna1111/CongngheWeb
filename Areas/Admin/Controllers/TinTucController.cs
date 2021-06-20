@@ -15,6 +15,11 @@ namespace WebApplication.Areas.Admin.Controllers
         // GET: Admin/TinTuc
         public ActionResult Index(string searchString = "", int page = 1, int pageSize = 6)
         {
+            var result = Session["Login_Successfull"];
+            if (result == null)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             var tintuc = new TinTucModel();
             var model = tintuc.listAllPaging(page, pageSize, searchString);
             ViewBag.searchString = searchString;
@@ -24,6 +29,11 @@ namespace WebApplication.Areas.Admin.Controllers
         // GET: Admin/TinTuc/Details/5
         public ActionResult Details(int id)
         {
+            var result = Session["Login_Successfull"];
+            if (result == null)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             var sach = new TinTucModel();
             var model = sach.ListAll(id);
             var res = model.Where(x => x.ID == id).FirstOrDefault();
@@ -33,6 +43,11 @@ namespace WebApplication.Areas.Admin.Controllers
         // GET: Admin/TinTuc/Create
         public ActionResult Create()
         {
+            var result = Session["Login_Successfull"];
+            if (result == null)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             return View();
         }
 
@@ -77,6 +92,11 @@ namespace WebApplication.Areas.Admin.Controllers
         // GET: Admin/TinTuc/Edit/5
         public ActionResult Edit(int id)
         {
+            var result = Session["Login_Successfull"];
+            if (result == null)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             var model = new TinTucModel();
             var list = model.ListAll(id);
             var res = list.Where(x => x.ID == id).FirstOrDefault();
@@ -118,6 +138,11 @@ namespace WebApplication.Areas.Admin.Controllers
         // GET: Admin/TinTuc/Delete/5
         public ActionResult Delete(int id)
         {
+            var result = Session["Login_Successfull"];
+            if (result == null)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             var model = new TinTucModel();
             var list = model.ListAll(id);
             var res = list.Where(x => x.ID == id).FirstOrDefault();

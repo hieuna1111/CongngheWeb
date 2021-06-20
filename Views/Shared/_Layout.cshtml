@@ -189,6 +189,7 @@
     .clearfix:after, .dl-horizontal dd:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical > .btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-header:after, .modal-footer:after {
         clear: both;
     }
+
     .clearfix:before, .clearfix:after, .dl-horizontal dd:before, .dl-horizontal dd:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical > .btn-group:before, .btn-group-vertical > .btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-header:before, .modal-header:after, .modal-footer:before, .modal-footer:after {
         content: " ";
         display: table;
@@ -233,59 +234,19 @@
     <link rel="apple-touch-icon-precomposed" href="~/Assets/Admin2/images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 
-
-
 <body>
     <header id="header">
         <!--header-->
         <div class="header_top">
             <!--header_top-->
             <div class="container">
-                <div class="row">
-                    @*<div class="col-sm-6">
-                        <div class="contactinfo">
-                            <ul class="nav nav-pills">
-                                <li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                                <li><a href=""><i class="fa fa-envelope"></i> info@domain.com</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="social-icons pull-right">
-                            <ul class="nav navbar-nav">
-                                <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href=""><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>*@
+                <div class="row"  style="margin-left: -85px;margin-right: -85px">
                     <section id="block-block-44" class="block block-block hidden-xs hidden-sm clearfix">
-
-
                         <div class="row">
                             <div class="col-xs-5 col-sm-4 col-md-5 top-left">
                                 <section id="block-views-exp-hieusach-page" class="block block-views clearfix">
                                     <div class="row">
                                         <div class="col-sm-8">
-                                            <!--<form action="~/Product/ProductSearch" method="get" id="views-exposed-form-hieusach-page" accept-charset="UTF-8" class="jquery-once-1-processed">
-                                        <div>
-                                            <div class="views-exposed-form" style="padding-top: 5px">
-                                                <div class="views-exposed-widgets clearfix" style="display:flex">
-                                                    <div id="edit-title-wrapper" class="views-exposed-widget views-widget-filter-combine">
-                                                        <div class="views-widget">
-                                                            <div class="form-item form-item-title form-type-textfield form-group"><input class="form-control form-text" type="text" id="edit-title" name="searchString" value="" size="30" maxlength="128" style="width: 400px"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="views-exposed-widget views-submit-button">
-                                                        <button type="submit" id="edit-submit-hieusach" name="" value="Áp dụng" class="btn btn-info form-submit">Tìm kiếm</button>-->
-                                            @*<span class="layer-submit"><img class="" src="/images/kimdongnew/search_icon.png"> <span>Tìm kiếm</span></span>*@
-                                            <!--</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>-->
                                             @using (Html.BeginForm("ProductSearch", "Product", FormMethod.Get))
                                             {
                                                 <div class="input-group" style="display:flex; padding-top:6px">
@@ -305,7 +266,7 @@
                                             }
 
                                         </div>
-
+                                    </div>
                                 </section>
                             </div>
 
@@ -316,7 +277,7 @@
             </div>
         </div><!--/header_top-->
 
-        f<div style="margin-top:30px"></div>
+        <div style="margin-top:40px"></div>
 
         <div class="header-middle">
             <!--header-middle-->
@@ -353,12 +314,12 @@
                             @{Html.RenderAction("MainMenu", "Home"); }
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="search_box pull-right">
-                            <input type="text" placeholder="Search" style="width:505px" id="inputSearch" />
-                            <button type="submit" class="btn btn-default get" style="width:90px">Tìm kiếm</button>
-                        </div>
-                    </div>
+                    @*<div class="col-sm-3">
+                            <div class="search_box pull-right">
+                                <input type="text" placeholder="Search" style="width:505px" id="inputSearch" />
+                                <button type="submit" class="btn btn-default get" style="width:90px">Tìm kiếm</button>
+                            </div>
+                        </div>*@
                 </div>
             </div>
         </div>

@@ -13,6 +13,14 @@ namespace WebApplication
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // chi tiết tin tức
+            routes.MapRoute(
+                name: "News detail",
+                url: "chi-tiet-tin-tuc/{metatitle}-{id}",
+                defaults: new { controller = "News", action = "Detail", id = UrlParameter.Optional },
+                new[] { "WebApplication.Controllers" }
+            );
+
             // liên hệ
             routes.MapRoute(
                 name: "Contact",

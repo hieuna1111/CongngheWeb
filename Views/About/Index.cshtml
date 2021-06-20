@@ -1,9 +1,74 @@
 ﻿
-@model WebApplication.Models.EF.Contact
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Danh mục</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-productsr-->
+                        @{ Html.RenderAction("ProductCategory", "Product");}
+                    </div><!--/category-products-->
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="blog-post-area">
+                    <h2 class="title text-center">Giới thiệu Books - Store</h2>
+                    <div class="single-blog-post">
+                        <h3>Tiểu sử</h3>
+                        <div class="post-meta">
+                            <ul>
+                                <li><i class="fa fa-user"></i> Mac Doe</li>
+                                <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
+                                <li><i class="fa fa-calendar"></i> DEC 5, 2021</li>
+                            </ul>
+                            <span>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </span>
+                        </div>
+                        <a href="">
+                            <img src="images/blog/blog-one.jpg" alt="">
+                        </a>
+                        <p>
+                            Nhà xuất bản Kim Đồng trực thuộc Trung ương Đoàn TNCS Hồ Chí Minh là Nhà xuất bản tổng hợp có chức năng xuất bản sách và văn hóa phẩm phục vụ thiếu nhi và các bậc phụ huynh trong cả nước, quảng bá và giới thiệu văn hóa Việt Nam ra thế giới.
+                            Nhà xuất bản có nhiệm vụ tổ chức bản thảo, biên soạn, biên dịch, xuất bản và phát hành các xuất bản phẩm có nội dung: giáo dục truyền thống dân tộc, giáo dục về tri thức, kiến thức… trên các lĩnh vực văn học, nghệ thuật, khoa học kỹ thuật nhằm cung cấp cho các em thiếu nhi cũng như các bậc phụ huynh các kiến thức cần thiết trong cuộc sống, những tinh hoa của tri thức nhân loại nhằm góp phần giáo dục và hình thành nhân cách thế hệ trẻ.
+                            Đối tượng phục vụ của Nhà xuất bản là các em từ tuổi nhà trẻ mẫu giáo (1 đến 5 tuổi), nhi đồng (6 đến 9 tuổi), thiếu niên (10 đến 15 tuổi) đến các em tuổi mới lớn (16 đến 18 tuổi) và các bậc phụ huynh.
+                        </p> <br>
 
+                        <p>
+                            THÔNG TIN CHUNG
+                        </p>
+                        <p>
+                            Tên giao dịch: Nhà xuất bản Kim Đồng
+                        </p>
+                        <p>
+                            Tên giao dịch quốc tế: Kim Dong Publishing House
+                        </p>
+                        <p>
+                            Ngày thành lập: 17 tháng 6 năm 1957
+                        </p>
+                        <p>
+                            Cơ quan chủ quản: Trung ương Đoàn TNCS Hồ Chí Minh
+                        </p>
+                        <div class="pager-area">
+                            <ul class="pager pull-right">
+                                <li><a href="#">Pre</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--/blog-post-area-->
+            </div>
+        </div>
+    </div>
+</section>
 

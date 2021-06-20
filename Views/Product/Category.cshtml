@@ -1,6 +1,6 @@
 ﻿
 @model WebApplication.Models.EF.ChuDe
-
+@using System.Globalization
 @{
     ViewBag.Title = "Category";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,27 +21,11 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="left-sidebar">
-                    <h2>Category</h2>
+                    <h2>Danh mục</h2>
                     <div class="panel-group category-products" id="accordian">
                         <!--category-productsr-->
                         @{ Html.RenderAction("ProductCategory", "Product");}
                     </div><!--/category-productsr-->
-
-                    <div class="brands_products">
-                        <!--brands_products-->
-                        <h2>Brands</h2>
-                        <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href=""> <span class="pull-right">(50)</span>Acne</a></li>
-                                <li><a href=""> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-                                <li><a href=""> <span class="pull-right">(27)</span>Albiro</a></li>
-                                <li><a href=""> <span class="pull-right">(32)</span>Ronhill</a></li>
-                                <li><a href=""> <span class="pull-right">(5)</span>Oddmolly</a></li>
-                                <li><a href=""> <span class="pull-right">(9)</span>Boudestijn</a></li>
-                                <li><a href=""> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-                            </ul>
-                        </div>
-                    </div><!--/brands_products-->
 
                 </div>
             </div>
@@ -62,9 +46,9 @@
                                             <img style="width:160px;height:230px" src="@Url.Content(item.AnhBia)" alt="" data-src />
                                         </a>
                                         <p>@item.TenSach</p>
-                                        <p>@item.GiaBan VND</p>
+                                        <p>@(Convert.ToDouble(item.GiaBan).ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN")))</p>
                                         @*<p>@item.MoTa</p>*@
-                                        <a href="@url" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a href="/them-gio-hang?productID=@item.ID&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
 
                                 </div>
@@ -136,7 +120,7 @@
                 </div>
             </div>
         </div>
-       
+
     </div>
 </section>
 
