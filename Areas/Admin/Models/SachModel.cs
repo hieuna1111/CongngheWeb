@@ -92,7 +92,7 @@ namespace WebApplication.Areas.Admin.Models
                 model = model.OrderBy(x => x.GiaBan).ToList();
             }
 
-            return model.OrderByDescending(x=>x.ID).ToPagedList(page, pageSize);
+            return model.ToPagedList(page, pageSize);
         }
 
         public string GetPathImageByID(int id)

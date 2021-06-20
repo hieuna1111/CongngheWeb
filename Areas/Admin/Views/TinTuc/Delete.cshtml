@@ -1,0 +1,63 @@
+﻿@model WebApplication.Models.EF.TinTuc
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<div class="card-header py-3 text-center">
+    <h2 class="m-0 font-weight-bold text-primary">Tin Tức</h2>
+</div>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Admin">Trang Chủ</a></li>
+        <li class="breadcrumb-item"><a href="~/Admin/TinTuc">Tin Tức</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Xóa</li>
+    </ol>
+</nav>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Mô tả</th>
+                    <th>Ảnh</th>
+                    <th>Mô tả chi tiết</th>
+                    <th>Ngày đăng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.Name)</td>
+                    <td><img style="width:100px;height:100px" src="@Url.Content(Model.Image)" /></td>
+                    <td>@Html.TextAreaFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control" }, id = "Detail" })</td>
+                    <td>@Html.DisplayFor(model => model.CreatedDate)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-outline-danger" />
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>
+
+<script src="~/Assets/ckfinder/ckfinder.js"></script>
+<script src="~/Assets/ckeditor/ckeditor.js"></script>
+<Script>
+    CKEDITOR.replace('Detail');
+</Script>

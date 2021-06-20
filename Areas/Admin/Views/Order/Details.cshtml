@@ -1,0 +1,119 @@
+﻿@*@model IEnumerable<OnlineBookShop.Support_Class.BookDetails>*@
+
+@model PagedList.IPagedList<WebApplication.Models.EF.OrderDetail>
+@using PagedList.Mvc
+@using PagedList
+@{ ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; }
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="~/Assets/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/Assets/Admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+
+
+</head>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+
+
+<style>
+
+    /* thiết lập style cho thẻ a */
+    .pagination a {
+        color: #4e73df;
+        float: left;
+        padding: 12px 18px;
+        text-decoration: none;
+    }
+        /* thiết lập style cho class active */
+        .pagination a.active {
+            background-color: #4e73df;
+            color: black;
+            /*thiết kế hình tròn với css*/
+            /*        border-radius: 50%;
+    */
+        }
+        /* thêm màu nền khi người dùng hover vào class không active */
+        .pagination a:hover:not(.active) {
+            background-color: #4e73df;
+            color: #fff;
+            /*thiết kế hình tròn với css*/
+            /*        border-radius: 50%;
+    */
+        }
+</style>
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">LIST BOOKS</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+
+            @*<p>
+                    @Html.ActionLink("Thêm sách mới", "Create")
+                </p>*@
+            @*<a href="@Url.Content("~/Admin/Home/Create")" class="btn btn-outline-success"><span class="glyphicon glyphicon-search"></span>Thêm mới</a>*@
+
+
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tên sách</th>
+                        <th>Ảnh bìa</th>
+                        <th>Số lượng</th>
+                        <th>Giá bán</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var tensach = item.Sach.TenSach;
+                        var anhbia = item.Sach.AnhBia;
+                        var soluong = item.Quantity;
+                        var giaban = item.Price;
+        <tr>
+            <td>@tensach</td>
+            <td><img src="@Url.Content(anhbia)" alt="" style="height:80px; width:50px" /></td>
+            <td>@soluong</td>
+            <td>@giaban</td>
+
+
+
+        </tr>}
+                </tbody>
+            </table>
+
+
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.searchString, @searchField = @ViewBag._searchField, @giaMin = ViewBag.giaMin, @giaMax = ViewBag.giaMax }))
+
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</div>

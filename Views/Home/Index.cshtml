@@ -38,7 +38,7 @@
                                             <h1><span>Book</span>-Store</h1>
                                             <h2>Nguồn tri thức bất tận của nhân loại</h2>
                                             <p>"Chỉ trong sách, con người mới biết đến sự thật, tình yêu và cái đẹp hoàn hảo." - George Bernard Shaw</p>
-                                            <button type="button" class="btn btn-default get">Get it now</button>
+                                            @*<button type="button" class="btn btn-default get">Get it now</button>*@
                                         </div>
                                         <div class="col-sm-6">
                                             <img src="@Url.Content(@item.Image)" class="girl img-responsive" alt="" />
@@ -52,7 +52,7 @@
                                             <h1><span>Book</span>-Store</h1>
                                             <h2>Chìa khóa khởi nguồn cảm hứng</h2>
                                             <p>"Việc đọc rất quan trọng. Nếu bạn biết cách đọc, cả thế giới sẽ mở ra cho bạn." - Barack Obama</p>
-                                            <button type="button" class="btn btn-default get">Get it now</button>
+                                            @*<button type="button" class="btn btn-default get">Get it now</button>*@
                                         </div>
                                         <div class="col-sm-6">
                                             <img href="@item.Link" src="@Url.Content(@item.Image)" class="girl img-responsive" alt="" />
@@ -66,7 +66,7 @@
                                             <h1><span>Books</span>-Store</h1>
                                             <h2>Là lựa chọn hàng đầu của bạn</h2>
                                             <p>Hành trình của bạn bắt đầu từ một sự lựa chọn. Hãy để chúng tôi giúp bạn. </p>
-                                            <button type="button" class="btn btn-default get">Get it now</button>
+                                            @*<button type="button" class="btn btn-default get">Get it now</button>*@
                                         </div>
                                         <div class="col-sm-6">
                                             <img href="@item.Link" src="@Url.Content(@item.Image)" class="girl img-responsive" alt="" />
@@ -96,6 +96,7 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="left-sidebar">
+                    <br />
                     <h2>Category</h2>
                     <div class="panel-group category-products" id="accordian">
                         <!--category-productsr-->
@@ -138,7 +139,7 @@
                 <div class="features_items">
                     <!--features_items-->
                     <h2 class="title text-center">
-                        <a class="btn hvr-hover" href="~/Product/VanHoc">Sách mới</a>
+                        <a class="btn hvr-hover" href="~/Product/VanHoc">Sách mới cập nhật</a>
                     </h2>
 
                     @foreach (var item in ListNewBook)

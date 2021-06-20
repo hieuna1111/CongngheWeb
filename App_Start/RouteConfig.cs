@@ -21,6 +21,14 @@ namespace WebApplication
                 new[] { "WebApplication.Controllers" }
             );
 
+            // tìm kiếm
+            routes.MapRoute(
+                name: "Search",
+                url: "tim-kiem/{action}/{id}",
+                defaults: new { controller = "Product", action = "ProductSearch", id = UrlParameter.Optional },
+                new[] { "OnlineBookShop.Controllers" }
+            );
+
             // sản phẩm
             routes.MapRoute(
                 name: "Product",

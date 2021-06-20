@@ -1,8 +1,69 @@
-﻿
+﻿@model PagedList.IPagedList<WebApplication.Models.EF.TinTuc>
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var TinTuc = (List<WebApplication.Models.EF.TinTuc>)ViewBag.TinTuc;
 }
 
-<h2>Index</h2>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        <h2>Category</h2>
+                        <div class="panel-group category-products" id="accordian">
+                            <!--category-productsr-->
+                            @{ Html.RenderAction("ProductCategory", "Product");}
+                        </div><!--/category-products-->
+
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="blog-post-area">
+                        <h2 class="title text-center">Tin tức mới nhất</h2>
+
+
+                        @foreach (var item in TinTuc)
+                        {
+                            <div class="single-blog-post">
+                                <h3>@item.Name</h3>
+                                <div class="post-meta">
+                                    <ul>
+                                        @*<li><i class="fa fa-user"></i> Mac Doe</li>
+                                            <li><i class="fa fa-clock-o"></i> 1:33 pm</li>*@
+                                        <li><i class="fa fa-calendar"></i>@item.CreatedDate</li>
+                                    </ul>
+                                    <span>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </span>
+                                </div>
+                                <a href="">
+                                    <img style="width:600px;height:400px" src="@Url.Content(item.Image)" alt="" class="">
+                                </a>
+                                <p>@Html.Raw(item.Detail)</p>
+                                @*<a class="btn btn-primary" href="">Read More</a>*@
+                            </div>
+                        }
+
+
+                        <div class="pagination-area">
+                            <ul class="pagination">
+                                @Html.PagedListPager(Model, PageNum => Url.Action("News", new { PageNum, @searchString = @ViewBag.searchString }))
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
 

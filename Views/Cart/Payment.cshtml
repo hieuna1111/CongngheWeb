@@ -74,6 +74,7 @@
                     <div class="chose_area">
                         @using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
                         {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <ul class="user_option">
                                 <li>
                                     <input type="radio" value="male" name="sex">

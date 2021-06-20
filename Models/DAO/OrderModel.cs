@@ -16,6 +16,7 @@ namespace WebApplication.Models.DAO
 
         public int Insert(Order order)
         {
+            order.Status = false;
             db.Orders.Add(order);
             db.SaveChanges();
             return order.ID;

@@ -68,5 +68,53 @@ namespace WebApplication.Controllers
         {
             return View();
         }
+
+        public ActionResult ProductSearch(string searchString = "", int giaMin = 0, int giaMax = 0, int page = 1, int pageSize = 4)
+        {
+            ViewBag.SearchString = searchString;
+
+            var res = new SachModel().listSearch(searchString, giaMin, giaMax);
+            int totalRecord = 0;
+            //ViewBag.BookBySearch = new SachDao().getBookBySearch(searchString,giaMin, giaMax, ref totalRecord, page, pageSize);
+            var res1 = new SachModel().getBookBySearch(searchString, giaMin, giaMax, ref totalRecord, page, pageSize);
+
+            ViewBag.CountResult = res1.Count; 
+            ViewBag.Total = totalRecord;
+            ViewBag.Page = page;
+
+            int maxPage = 5;
+            int totalPage = 0;
+
+            float sl1 = totalRecord % pageSize;
+            if (sl1 > 0)
+            {
+                totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize)) + 1;
+            }
+            else
+            {
+                totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize));
+            }
+            ViewBag.TotalPage = totalPage;
+            ViewBag.MaxPage = maxPage;
+            ViewBag.First = 1;
+            ViewBag.Last = totalPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Prev = page - 1;
+
+            // new 
+            if (giaMin == 0 && giaMax == 0)
+            {
+                ViewBag.giaMin = null;
+                ViewBag.giaMax = null;
+
+            }
+            else
+            {
+                ViewBag.giaMin = giaMin;
+                ViewBag.giaMax = giaMax;
+            }
+
+            return View(res1);
+        }
     }
 }

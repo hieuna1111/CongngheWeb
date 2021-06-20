@@ -1,4 +1,4 @@
-namespace WebApplication.Models.EF
+﻿namespace WebApplication.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -22,12 +22,15 @@ namespace WebApplication.Models.EF
         public int? CustomerID { get; set; }
 
         [StringLength(100)]
+        [Required(ErrorMessage = "Điền thông tin họ tên.")]
         public string ShipName { get; set; }
 
         [StringLength(100)]
+        [Required(ErrorMessage = "Cần nhập số điện thoại.")]
         public string ShipMobile { get; set; }
 
         [StringLength(100)]
+        [Required(ErrorMessage = "Nhập địa chỉ giao hàng.")]
         public string ShipAddress { get; set; }
 
         [StringLength(100)]

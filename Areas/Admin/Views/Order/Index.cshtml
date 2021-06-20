@@ -1,0 +1,163 @@
+﻿@*@model IEnumerable<OnlineBookShop.Support_Class.BookDetails>*@
+
+@model PagedList.IPagedList<WebApplication.Models.EF.Order>
+@using PagedList.Mvc
+@using PagedList
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="~/Assets/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/Assets/Admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+
+
+</head>
+
+<style>
+
+    /* thiết lập style cho thẻ a */
+    .pagination a {
+        color: #4e73df;
+        float: left;
+        padding: 12px 18px;
+        text-decoration: none;
+    }
+        /* thiết lập style cho class active */
+        .pagination a.active {
+            background-color: #4e73df;
+            color: black;
+            /*thiết kế hình tròn với css*/
+            /*        border-radius: 50%;
+    */
+        }
+        /* thêm màu nền khi người dùng hover vào class không active */
+        .pagination a:hover:not(.active) {
+            background-color: #4e73df;
+            color: #fff;
+            /*thiết kế hình tròn với css*/
+            /*        border-radius: 50%;
+    */
+        }
+</style>
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">LIST BOOKS</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+
+                @using (Html.BeginForm("Index", "Order", FormMethod.Get))
+                {
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small col-12" placeholder="Nhập từ khóa ..."
+                               aria-label="Search" value="@ViewBag.searchString" aria-describedby="basic-addon2" name="searchString">
+                        @*@Html.DropDownList("searchField", ViewBag.searchField as SelectList, new { @class = "form-control" })
+                            <input type="number" class="form-control bg-light border-0 small col-12" placeholder="Giá từ ..."
+                                   aria-label="Search" value="@ViewBag.giaMin" aria-describedby="basic-addon2" name="giaMin">
+                            <input type="number" class="form-control bg-light border-0 small col-12" placeholder="Đến "
+                                   aria-label="Search" value="@ViewBag.giaMax" aria-describedby="basic-addon2" name="giaMax">*@
+
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                        </div>
+                    </div>
+
+                }
+
+
+                <!-- Topbar Navbar -->
+
+            </nav>
+
+            <p>
+                @Html.ActionLink("Thêm tin mới", "Create")
+            </p>
+
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tên khách hàng</th>
+                        <th>Địa chỉ</th>
+
+                        <th>Điện thoại</th>
+                        <th>Ngày đặt</th>
+                        <th>Tổng tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var record = item.OrderDetails.FirstOrDefault(x => x.OrderID == item.ID);
+                        var total = record.Quantity * record.Price;
+                        <tr>
+                            <td>@item.ShipName</td>
+                            <td>@item.ShipAddress</td>
+                            <td>@item.ShipMobile</td>
+                            <td>@item.CreatedDate</td>
+                            <td>@total</td>
+                            @if (item.Status == false)
+                            {
+                                <td>
+                                    @Html.ActionLink("Xác nhận", "Confirm", new { id = item.ID }) |
+                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.ID }) |
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.ID })
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.ID })
+                                </td>
+
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        <div class="col-sm-12 col-md-7">
+                            @Html.PagedListPager(Model,
+                page => Url.Action("Index", new { page, @searchString = @ViewBag.searchString, @searchField = @ViewBag._searchField, @giaMin = ViewBag.giaMin, @giaMax = ViewBag.giaMax }),
+                new PagedListRenderOptions()
+                {
+                    UlElementClasses = new List<string> { "pagination" },
+                    LiElementClasses = new List<string> { "paginate_button page-item " },
+                    ContainerDivClasses = new List<string> { "dataTables_paginate paging_simple_numbers" }
+                })
+
+                        </div>*@
+
+
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.searchString }))
+
+
+
+        </div>
+    </div>
+</div>

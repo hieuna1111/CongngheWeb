@@ -50,5 +50,43 @@ namespace WebApplication.Models.DAO
             return db.Saches.Where(x => x.MaCD == idChuDe).OrderBy(x => x.GiaBan).Take(top).ToList();
         }
 
+        public List<Sach> listSearch(string searchString, int giaMin, int giaMax)
+        {
+            var res = db.Saches.Where(x => x.TenSach.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList();
+            if (giaMin > 0 && giaMax >= giaMin)
+            {
+                res = res.Where(x => x.GiaBan >= giaMin && x.GiaBan <= giaMax).OrderBy(x => x.GiaBan).ToList();
+            }
+            else if (giaMin >= 0 && giaMax == 0)
+            {
+                res = res.Where(x => x.GiaBan >= giaMin).OrderBy(x => x.GiaBan).ToList();
+            }
+            else if (giaMax >= 0 && giaMin == 0)
+            {
+                res = res.Where(x => x.GiaBan <= giaMax).OrderBy(x => x.GiaBan).ToList();
+
+            }
+            return res;
+        }
+
+        public List<Sach> getBookBySearch(string searchString, int giaMin, int giaMax, ref int totalRecord, int pageIndex = 1, int pageSize = 1)
+        {
+            totalRecord = db.Saches.Where(x => x.TenSach.ToLower().Trim().Contains(searchString.ToLower().Trim())).ToList().Count();
+            var res = db.Saches.Where(x => x.TenSach.ToLower().Trim().Contains(searchString.ToLower().Trim())).OrderBy(x => x.GiaBan).ToList();
+            if (giaMin > 0 && giaMax >= giaMin)
+            {
+                res = res.Where(x => x.GiaBan >= giaMin && x.GiaBan <= giaMax).OrderBy(x => x.GiaBan).ToList();
+            }
+            else if (giaMin >= 0 && giaMax == 0)
+            {
+                res = res.Where(x => x.GiaBan >= giaMin).OrderBy(x => x.GiaBan).ToList();
+            }
+            else if (giaMax >= 0 && giaMin == 0)
+            {
+                res = res.Where(x => x.GiaBan <= giaMax).OrderBy(x => x.GiaBan).ToList();
+            }
+
+            return res.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        }
     }
 }

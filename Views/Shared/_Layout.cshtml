@@ -43,6 +43,7 @@
     .dropdown:hover .dropbtn {
         background-color: #FE980F;
     }
+    }
 </style>
 
 <style>
@@ -95,7 +96,119 @@
     ul.cart-list > li.total > .btn:hover {
         color: #ffffff;
     }
+
+    #inputSearch {
+        background: #F0F0E9;
+        border: medium none;
+        color: #B2B2B2;
+        font-family: 'roboto';
+        font-size: 12px;
+        font-weight: 300;
+        height: 35px;
+        outline: medium none;
+        padding-left: 10px;
+        background-repeat: no-repeat;
+        background-position: 130px;
+    }
 </style>
+
+<style>
+    #block-block-44 {
+        font-size: 14px;
+        height: 42px;
+    }
+
+    .breadcrumb, #block-block-44 {
+        background-color: #ebe9e9;
+    }
+
+    #block-block-44 {
+        height: 4.5rem;
+        margin: 0 -15px;
+        padding: 0 4rem;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 9999;
+        font-size: 1.25rem;
+    }
+
+    body * {
+        font-family: Myriad Pro,Myriad Pro Cond,Myriad Pro Semibold,Roboto,Open Sans,serif;
+    }
+
+    article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+        display: block;
+    }
+
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    user agent stylesheet
+    section {
+        display: block;
+    }
+
+    body {
+        font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 15px;
+        line-height: 1.4;
+        color: #222222;
+        background-color: #ffffff;
+    }
+
+    html {
+        font-size: 11px;
+    }
+
+    html {
+        font-size: 10px;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+
+    html {
+        font-family: sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    .clearfix:before, .clearfix:after, .dl-horizontal dd:before, .dl-horizontal dd:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical > .btn-group:before, .btn-group-vertical > .btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-header:before, .modal-header:after, .modal-footer:before, .modal-footer:after {
+        content: " ";
+        display: table;
+    }
+
+    *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .clearfix:after, .dl-horizontal dd:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical > .btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-header:after, .modal-footer:after {
+        clear: both;
+    }
+    .clearfix:before, .clearfix:after, .dl-horizontal dd:before, .dl-horizontal dd:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical > .btn-group:before, .btn-group-vertical > .btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-header:before, .modal-header:after, .modal-footer:before, .modal-footer:after {
+        content: " ";
+        display: table;
+    }
+
+    .clearfix:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+
+    *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+</style>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -120,6 +233,8 @@
     <link rel="apple-touch-icon-precomposed" href="~/Assets/Admin2/images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 
+
+
 <body>
     <header id="header">
         <!--header-->
@@ -127,7 +242,7 @@
             <!--header_top-->
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
+                    @*<div class="col-sm-6">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
                                 <li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
@@ -145,10 +260,63 @@
                                 <li><a href=""><i class="fa fa-google-plus"></i></a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div>*@
+                    <section id="block-block-44" class="block block-block hidden-xs hidden-sm clearfix">
+
+
+                        <div class="row">
+                            <div class="col-xs-5 col-sm-4 col-md-5 top-left">
+                                <section id="block-views-exp-hieusach-page" class="block block-views clearfix">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <!--<form action="~/Product/ProductSearch" method="get" id="views-exposed-form-hieusach-page" accept-charset="UTF-8" class="jquery-once-1-processed">
+                                        <div>
+                                            <div class="views-exposed-form" style="padding-top: 5px">
+                                                <div class="views-exposed-widgets clearfix" style="display:flex">
+                                                    <div id="edit-title-wrapper" class="views-exposed-widget views-widget-filter-combine">
+                                                        <div class="views-widget">
+                                                            <div class="form-item form-item-title form-type-textfield form-group"><input class="form-control form-text" type="text" id="edit-title" name="searchString" value="" size="30" maxlength="128" style="width: 400px"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="views-exposed-widget views-submit-button">
+                                                        <button type="submit" id="edit-submit-hieusach" name="" value="Áp dụng" class="btn btn-info form-submit">Tìm kiếm</button>-->
+                                            @*<span class="layer-submit"><img class="" src="/images/kimdongnew/search_icon.png"> <span>Tìm kiếm</span></span>*@
+                                            <!--</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>-->
+                                            @using (Html.BeginForm("ProductSearch", "Product", FormMethod.Get))
+                                            {
+                                                <div class="input-group" style="display:flex; padding-top:6px">
+                                                    <input type="text" class="form-control bg-light border-0 small col-12" placeholder="Nhập từ khóa ..."
+                                                           aria-label="Search" value="@ViewBag.searchString" aria-describedby="basic-addon2" name="searchString" style="width:200px">
+                                                    @*@Html.DropDownList("searchField", ViewBag.searchField as SelectList, new { @class = "form-control" })*@
+                                                    <input type="number" class="form-control bg-light border-0 small col-12" placeholder="Giá từ ..."
+                                                           aria-label="Search" value="@ViewBag.giaMin" aria-describedby="basic-addon2" name="giaMin" style="width:100px">
+                                                    <input type="number" class="form-control bg-light border-0 small col-12" placeholder="Đến "
+                                                           aria-label="Search" value="@ViewBag.giaMax" aria-describedby="basic-addon2" name="giaMax" style="width:100px">
+
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary" type="submit" style="margin-top:1px">Tìm kiếm</button>
+                                                    </div>
+                                                </div>
+
+                                            }
+
+                                        </div>
+
+                                </section>
+                            </div>
+
+                        </div>
+                    </section>
+
                 </div>
             </div>
         </div><!--/header_top-->
+
+        f<div style="margin-top:30px"></div>
 
         <div class="header-middle">
             <!--header-middle-->
@@ -187,7 +355,8 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="search_box pull-right">
-                            <input type="text" placeholder="Search" />
+                            <input type="text" placeholder="Search" style="width:505px" id="inputSearch" />
+                            <button type="submit" class="btn btn-default get" style="width:90px">Tìm kiếm</button>
                         </div>
                     </div>
                 </div>
@@ -359,5 +528,5 @@
     <script src="~/Assets/Admin2/js/jquery.scrollUp.min.js"></script>
     <script src="~/Assets/Admin2/js/jquery.prettyPhoto.js"></script>
     <script src="~/Assets/Admin2/js/main.js"></script>
-    @RenderSection("jsFooter", required:false)
+    @RenderSection("jsFooter", required: false)
 </body>

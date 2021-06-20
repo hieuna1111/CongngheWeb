@@ -1,6 +1,6 @@
 ﻿@using PagedList.Mvc;
 @model PagedList.IPagedList<WebApplication.Models._EF._Sach>
-
+@using System.Globalization
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                     }
-
+                    <br />
                     <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -105,7 +105,9 @@
                                         @Html.DisplayFor(modelItem => item.TenSach)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.GiaBan)
+                                        @*@Html.DisplayFor(modelItem => item.GiaBan)*@
+                                        @(Convert.ToDouble(item.GiaBan).ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN")))
+
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.SoLuongTon)

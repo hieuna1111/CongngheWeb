@@ -3,8 +3,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var RecommendActive = (List<WebApplication.Models.EF.Sach>)ViewBag.RecommendItemActive;
     var RecommendItem = (List<WebApplication.Models.EF.Sach>)ViewBag.RecommendItem;
-    var selectNumbericSold = ViewBag.NumbericSold;
-}
+    var selectNumbericSold = ViewBag.NumbericSold; 
+    }
 
 <style>
     .product-information span span {
@@ -92,6 +92,7 @@
                                 <span>@Model.GiaBan VND</span>
                                 @*<label>Quantity:</label>
                                     <input type="text" value="1" />*@
+                                <input type="number" class="cart_quantity_input" name="" id="" min="1" value="1" />
                                 <button type="submit" class="btn btn-fefault cart">
                                     <a href="/them-gio-hang?productID=@Model.ID&quantity=1" class=""><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     @*<i class="fa fa-shopping-cart"></i>
